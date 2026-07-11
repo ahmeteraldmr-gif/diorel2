@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": {
+            "tr": "Maxx Royal Bodrum",
+            "en": "Maxx Royal Bodrum"
+        },
+        "tag": {
+            "tr": "Bodrum, Türkiye",
+            "en": "Bodrum, Turkey"
+        },
+        "img": "foto.img/otel_maxx_royal.jpg",
+        "desc": {
+            "tr": "Eşsiz Ege manzarası ve ultra-lüks tesisleriyle benzersiz bir deneyim sunan 5 yıldızlı resort.",
+            "en": "A 5-star resort offering a unique experience with stunning Aegean views and ultra-luxury facilities."
+        }
+    },
+    {
+        "id": 2,
+        "name": {
+            "tr": "Museum Hotel",
+            "en": "Museum Hotel"
+        },
+        "tag": {
+            "tr": "Kapadokya, Türkiye",
+            "en": "Cappadocia, Turkey"
+        },
+        "img": "foto.img/otel_museum.jpg",
+        "desc": {
+            "tr": "Antik kaya oymaları içinde, tarihin derinliklerinde unutulmaz bir konaklama deneyimi.",
+            "en": "An unforgettable stay deep in history, inside ancient rock carvings."
+        }
+    },
+    {
+        "id": 3,
+        "name": {
+            "tr": "Hillside Beach Club",
+            "en": "Hillside Beach Club"
+        },
+        "tag": {
+            "tr": "Fethiye, Türkiye",
+            "en": "Fethiye, Turkey"
+        },
+        "img": "foto.img/otel_hillside.jpg",
+        "desc": {
+            "tr": "Özel plajı, eşsiz koyu ve lüks hizmetleriyle Türkiye'nin en prestijli tatil köyü.",
+            "en": "Turkey's most prestigious resort with its private beach, unique bay and luxury services."
+        }
+    },
+    {
+        "id": 4,
+        "name": {
+            "tr": "Soneva Jani",
+            "en": "Soneva Jani"
+        },
+        "tag": {
+            "tr": "Maldivler",
+            "en": "Maldives"
+        },
+        "img": "foto.img/otel_soneva.jpg",
+        "desc": {
+            "tr": "Su üstü villalar, kristal berraklığında lagün ve sonsuz gökyüzü altında rüya konaklama.",
+            "en": "Overwater villas, crystal-clear lagoon and dream accommodation under endless skies."
+        }
+    },
+    {
+        "id": 5,
+        "name": {
+            "tr": "Aman Kyoto",
+            "en": "Aman Kyoto"
+        },
+        "tag": {
+            "tr": "Japonya",
+            "en": "Japan"
+        },
+        "img": "foto.img/otel_aman.jpg",
+        "desc": {
+            "tr": "Japon wabi-sabi felsefesini modern lüksle harmanlayan, orman içinde saklı benzersiz bir sığınak.",
+            "en": "A unique retreat hidden in the forest, blending Japan's wabi-sabi philosophy with modern luxury."
+        }
+    },
+    {
+        "id": 6,
+        "name": {
+            "tr": "Le Sirenuse",
+            "en": "Le Sirenuse"
+        },
+        "tag": {
+            "tr": "Amalfi Kıyısı, İtalya",
+            "en": "Amalfi Coast, Italy"
+        },
+        "img": "foto.img/otel_sirenuse.jpg",
+        "desc": {
+            "tr": "Positano'nun ikonik manzarası karşısında, denizi ve bougainvillea'ları izleyen efsanevi butik otel.",
+            "en": "Legendary boutique hotel overlooking the sea and bougainvilleas, facing Positano's iconic view."
+        }
+    }
+]

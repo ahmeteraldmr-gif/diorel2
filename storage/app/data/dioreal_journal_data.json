@@ -1,0 +1,87 @@
+[
+    {
+        "id": 1,
+        "title": {
+            "tr": "Japonya'da Çay Seremonisi",
+            "en": "Tea Ceremony in Japan"
+        },
+        "tag": {
+            "tr": "Yurtdışı · Asya",
+            "en": "Abroad · Asia"
+        },
+        "date": "22 Nisan 2026",
+        "img": "foto.img/japonya.jpg",
+        "desc": {
+            "tr": "Kyoto'nun arka sokaklarında yaşadığımız benzersiz çay deneyimi.",
+            "en": "Unique tea experience we had in the back streets of Kyoto."
+        }
+    },
+    {
+        "id": 2,
+        "title": {
+            "tr": "Su Üstü Villada Bir Hafta",
+            "en": "A Week in an Overwater Villa"
+        },
+        "tag": {
+            "tr": "Konaklama",
+            "en": "Accommodation"
+        },
+        "date": "15 Nisan 2026",
+        "img": "foto.img/maldivler.jpg",
+        "desc": {
+            "tr": "Maldivler'de su üstü villa deneyimi gerçekten değer mi?",
+            "en": "Is the overwater villa experience in the Maldives really worth it?"
+        }
+    },
+    {
+        "id": 3,
+        "title": {
+            "tr": "Bodrum'da Bir Yaz: Sessizlik",
+            "en": "A Summer in Bodrum: Silence"
+        },
+        "tag": {
+            "tr": "Türkiye · Ege",
+            "en": "Turkey · Aegean"
+        },
+        "date": "10 Nisan 2026",
+        "img": "foto.img/bodrum.jpg",
+        "desc": {
+            "tr": "Sezon öncesi Bodrum'un sakinliği ve huzuru.",
+            "en": "The peace and quiet of Bodrum before the season."
+        }
+    },
+    {
+        "id": 4,
+        "title": {
+            "tr": "Kapadokya'da Balon Keyfi",
+            "en": "Hot Air Balloon in Cappadocia"
+        },
+        "tag": {
+            "tr": "Kültür · Macera",
+            "en": "Culture · Adventure"
+        },
+        "date": "05 Nisan 2026",
+        "img": "foto.img/kapadokya.jpg",
+        "desc": {
+            "tr": "Peri bacaları üzerinde unutulmaz bir uçuş.",
+            "en": "An unforgettable flight over fairy chimneys."
+        }
+    },
+    {
+        "id": 5,
+        "title": {
+            "tr": "Patagonya Sessizliği",
+            "en": "Patagonia Silence"
+        },
+        "tag": {
+            "tr": "Yurtdışı · Doğa",
+            "en": "Abroad · Nature"
+        },
+        "date": "01 Nisan 2026",
+        "img": "foto.img/patagonya.jpg",
+        "desc": {
+            "tr": "Dünyanın ucunda doğayla baş başa.",
+            "en": "Alone with nature at the end of the world."
+        }
+    }
+]
