@@ -53,7 +53,7 @@
             @adminCan('guides')
             <li class="sidebar-item {{ Request::routeIs('admin.guides.*') ? 'active' : '' }}">
                 <a href="{{ route('admin.guides.index') }}">
-                    <i class="fas fa-map-marked-alt"></i> Destinasyonlar
+                    <i class="fas fa-map-marked-alt"></i> Destinasyon Rehberleri
                 </a>
             </li>
             @endadminCan

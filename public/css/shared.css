@@ -15,7 +15,7 @@
     --font-condensed: 'Oswald', sans-serif;
 }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; }
 body { background: var(--white); color: var(--near-black); font-family: var(--font-body); font-weight: 300; overflow-x: hidden; }
 
 /* ── NAV ──────────────────────────────────────── */

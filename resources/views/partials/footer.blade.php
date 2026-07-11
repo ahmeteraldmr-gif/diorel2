@@ -17,7 +17,7 @@
                 <li><a href="{{ url('/oteller') }}" data-i18n="nav_hotels">Oteller</a></li>
                 <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
                 <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
-                <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+                <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
                 <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
                 <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
             </ul>
@@ -25,11 +25,11 @@
         <div class="footer-col">
             <h4 data-i18n="footer_serv">Hizmetler</h4>
             <ul class="footer-links">
-                <li><a href="#" data-i18n="foot_honeymoon">Balayı Paketleri</a></li>
-                <li><a href="#" data-i18n="foot_family">Aile Tatilleri</a></li>
-                <li><a href="#" data-i18n="foot_adventure">Macera Turları</a></li>
-                <li><a href="#" data-i18n="foot_cultural">Kültür Gezileri</a></li>
-                <li><a href="#" data-i18n="foot_jet">Özel Jet Hizmetleri</a></li>
+                <li><a href="#">Balayı Paketleri</a></li>
+                <li><a href="#">Aile Tatilleri</a></li>
+                <li><a href="#">Macera Turları</a></li>
+                <li><a href="#">Kültür Gezileri</a></li>
+                <li><a href="#">Özel Jet Hizmetleri</a></li>
             </ul>
         </div>
         <div class="footer-col">
@@ -59,4 +59,3 @@
         <span>Est. 15 Years of Experience</span>
     </div>
 </footer>
-

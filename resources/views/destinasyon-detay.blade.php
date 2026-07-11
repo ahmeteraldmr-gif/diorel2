@@ -143,7 +143,7 @@
             <li><a href="{{ url('/oteller') }}" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
         </ul>
@@ -167,7 +167,7 @@
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
             <li class="lang-switch" style="font-size: 1.5rem; font-family: var(--font-display); justify-content: center; margin-top:3rem;">
@@ -370,4 +370,3 @@
     <script src="{{ asset('js/nav.js') }}?v={{ time() }}"></script>
 </body>
 </html>
-

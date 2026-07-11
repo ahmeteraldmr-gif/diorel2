@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Destinasyonu Düzenle')
+@section('title', 'Gezi Rehberini Düzenle')
 
-@section('page_title', 'Destinasyonu Düzenle')
-@section('page_subtitle', 'Mevcut destinasyon bilgilerini ve görsellerini güncelleyin.')
+@section('page_title', 'Gezi Rehberini Düzenle')
+@section('page_subtitle', 'Mevcut gezi rehberi bilgilerini ve görsellerini güncelleyin.')
 
 @section('content')
     <div class="panel-card">
         <div class="panel-card-header">
-            <h3 class="panel-card-title"><i class="fas fa-edit"></i> Destinasyon Düzenleme Formu</h3>
+            <h3 class="panel-card-title"><i class="fas fa-edit"></i> Rehber Düzenleme Formu</h3>
             <a href="{{ route('admin.guides.index') }}" class="btn btn-outline">
                 <i class="fas fa-arrow-left"></i> Geri Dön
             </a>
@@ -60,7 +60,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" style="min-height: 180px;">{{ old('desc.en', $guide->desc['en'] ?? '') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" required style="min-height: 180px;">{{ old('desc.en', $guide->desc['en'] ?? '') }}</textarea>
                 </div>
             </div>
 

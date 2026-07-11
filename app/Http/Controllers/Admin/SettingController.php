@@ -52,24 +52,68 @@ class SettingController extends Controller
             'footer_copy' => 'nullable|string|max:255',
             'hero_title_tr' => 'nullable|string|max:500',
             'hero_title_en' => 'nullable|string|max:500',
-            
-            // About Page
-            'about_eyebrow_tr' => 'nullable|string|max:255',
-            'about_eyebrow_en' => 'nullable|string|max:255',
-            'about_title_tr' => 'nullable|string|max:255',
-            'about_title_en' => 'nullable|string|max:255',
+
+            // Homepage selection (Manifesto)
+            'man_eyebrow_tr' => 'nullable|string|max:255',
+            'man_eyebrow_en' => 'nullable|string|max:255',
+            'man_p1_tr' => 'nullable|string|max:1000',
+            'man_p1_en' => 'nullable|string|max:1000',
+
+            // Trends
+            'trend_otel_title_tr' => 'nullable|string|max:255',
+            'trend_otel_title_en' => 'nullable|string|max:255',
+            'trend_otel_desc_tr' => 'nullable|string|max:500',
+            'trend_otel_desc_en' => 'nullable|string|max:500',
+
+            'trend_rest_title_tr' => 'nullable|string|max:255',
+            'trend_rest_title_en' => 'nullable|string|max:255',
+            'trend_rest_desc_tr' => 'nullable|string|max:500',
+            'trend_rest_desc_en' => 'nullable|string|max:500',
+
+            'trend_yat_title_tr' => 'nullable|string|max:255',
+            'trend_yat_title_en' => 'nullable|string|max:255',
+            'trend_yat_desc_tr' => 'nullable|string|max:500',
+            'trend_yat_desc_en' => 'nullable|string|max:500',
+
+            'trend_beach_title_tr' => 'nullable|string|max:255',
+            'trend_beach_title_en' => 'nullable|string|max:255',
+            'trend_beach_desc_tr' => 'nullable|string|max:500',
+            'trend_beach_desc_en' => 'nullable|string|max:500',
+
+            // About page fields
+            'about_hero_eyebrow_tr' => 'nullable|string|max:255',
+            'about_hero_eyebrow_en' => 'nullable|string|max:255',
+            'about_hero_title_tr' => 'nullable|string|max:255',
+            'about_hero_title_en' => 'nullable|string|max:255',
+
             'about_story_eyebrow_tr' => 'nullable|string|max:255',
             'about_story_eyebrow_en' => 'nullable|string|max:255',
             'about_story_title_tr' => 'nullable|string|max:255',
             'about_story_title_en' => 'nullable|string|max:255',
-            'about_p1_tr' => 'nullable|string|max:1000',
-            'about_p1_en' => 'nullable|string|max:1000',
-            'about_p2_tr' => 'nullable|string|max:1000',
-            'about_p2_en' => 'nullable|string|max:1000',
-            'about_stats_eyebrow_tr' => 'nullable|string|max:255',
-            'about_stats_eyebrow_en' => 'nullable|string|max:255',
+            'about_story_p1_tr' => 'nullable|string|max:1000',
+            'about_story_p1_en' => 'nullable|string|max:1000',
+            'about_story_p2_tr' => 'nullable|string|max:1000',
+            'about_story_p2_en' => 'nullable|string|max:1000',
+
             'about_stats_title_tr' => 'nullable|string|max:255',
             'about_stats_title_en' => 'nullable|string|max:255',
+
+            'about_stat1_num' => 'nullable|string|max:50',
+            'about_stat1_label_tr' => 'nullable|string|max:255',
+            'about_stat1_label_en' => 'nullable|string|max:255',
+
+            'about_stat2_num' => 'nullable|string|max:50',
+            'about_stat2_label_tr' => 'nullable|string|max:255',
+            'about_stat2_label_en' => 'nullable|string|max:255',
+
+            'about_stat3_num' => 'nullable|string|max:50',
+            'about_stat3_label_tr' => 'nullable|string|max:255',
+            'about_stat3_label_en' => 'nullable|string|max:255',
+
+            'about_stat4_num' => 'nullable|string|max:50',
+            'about_stat4_label_tr' => 'nullable|string|max:255',
+            'about_stat4_label_en' => 'nullable|string|max:255',
+
             'about_mission_eyebrow_tr' => 'nullable|string|max:255',
             'about_mission_eyebrow_en' => 'nullable|string|max:255',
             'about_mission_title_tr' => 'nullable|string|max:255',
@@ -78,9 +122,18 @@ class SettingController extends Controller
             'about_mission_p1_en' => 'nullable|string|max:1000',
             'about_mission_p2_tr' => 'nullable|string|max:1000',
             'about_mission_p2_en' => 'nullable|string|max:1000',
-            
-            'about_story_img' => 'nullable|image|max:2048',
-            'about_mission_img' => 'nullable|image|max:2048',
+
+            // Image uploads
+            'hero_slide_1' => 'nullable|image|max:5120',
+            'hero_slide_2' => 'nullable|image|max:5120',
+            'hero_slide_3' => 'nullable|image|max:5120',
+            'trend_otel_img' => 'nullable|image|max:5120',
+            'trend_rest_img' => 'nullable|image|max:5120',
+            'trend_yat_img' => 'nullable|image|max:5120',
+            'trend_beach_img' => 'nullable|image|max:5120',
+            'about_hero_img' => 'nullable|image|max:5120',
+            'about_story_img' => 'nullable|image|max:5120',
+            'about_mission_img' => 'nullable|image|max:5120',
         ]);
 
         $fields = [
@@ -94,24 +147,65 @@ class SettingController extends Controller
             'footer_copy',
             'hero_title_tr',
             'hero_title_en',
-            
-            // About Page
-            'about_eyebrow_tr',
-            'about_eyebrow_en',
-            'about_title_tr',
-            'about_title_en',
+
+            'man_eyebrow_tr',
+            'man_eyebrow_en',
+            'man_p1_tr',
+            'man_p1_en',
+
+            'trend_otel_title_tr',
+            'trend_otel_title_en',
+            'trend_otel_desc_tr',
+            'trend_otel_desc_en',
+
+            'trend_rest_title_tr',
+            'trend_rest_title_en',
+            'trend_rest_desc_tr',
+            'trend_rest_desc_en',
+
+            'trend_yat_title_tr',
+            'trend_yat_title_en',
+            'trend_yat_desc_tr',
+            'trend_yat_desc_en',
+
+            'trend_beach_title_tr',
+            'trend_beach_title_en',
+            'trend_beach_desc_tr',
+            'trend_beach_desc_en',
+
+            'about_hero_eyebrow_tr',
+            'about_hero_eyebrow_en',
+            'about_hero_title_tr',
+            'about_hero_title_en',
+
             'about_story_eyebrow_tr',
             'about_story_eyebrow_en',
             'about_story_title_tr',
             'about_story_title_en',
-            'about_p1_tr',
-            'about_p1_en',
-            'about_p2_tr',
-            'about_p2_en',
-            'about_stats_eyebrow_tr',
-            'about_stats_eyebrow_en',
+            'about_story_p1_tr',
+            'about_story_p1_en',
+            'about_story_p2_tr',
+            'about_story_p2_en',
+
             'about_stats_title_tr',
             'about_stats_title_en',
+
+            'about_stat1_num',
+            'about_stat1_label_tr',
+            'about_stat1_label_en',
+
+            'about_stat2_num',
+            'about_stat2_label_tr',
+            'about_stat2_label_en',
+
+            'about_stat3_num',
+            'about_stat3_label_tr',
+            'about_stat3_label_en',
+
+            'about_stat4_num',
+            'about_stat4_label_tr',
+            'about_stat4_label_en',
+
             'about_mission_eyebrow_tr',
             'about_mission_eyebrow_en',
             'about_mission_title_tr',
@@ -126,17 +220,37 @@ class SettingController extends Controller
             Setting::set($field, $request->input($field));
         }
 
-        if ($request->hasFile('about_story_img')) {
-            $path = $this->handleFileUpload($request->file('about_story_img'), 'uploads/about');
-            Setting::set('about_story_img', $path);
+        // Image uploads
+        $imageFields = [
+            'hero_slide_1',
+            'hero_slide_2',
+            'hero_slide_3',
+            'trend_otel_img',
+            'trend_rest_img',
+            'trend_yat_img',
+            'trend_beach_img',
+            'about_hero_img',
+            'about_story_img',
+            'about_mission_img',
+        ];
+
+        foreach ($imageFields as $imgField) {
+            if ($request->hasFile($imgField)) {
+                // Delete old file if exists
+                $oldPath = Setting::get($imgField);
+                if ($oldPath && !str_starts_with($oldPath, 'foto.img/')) {
+                    $oldFilePath = public_path($oldPath);
+                    if (File::exists($oldFilePath)) {
+                        File::delete($oldFilePath);
+                    }
+                }
+                
+                $path = $this->handleFileUpload($request->file($imgField), 'uploads/settings');
+                Setting::set($imgField, $path);
+            }
         }
 
-        if ($request->hasFile('about_mission_img')) {
-            $path = $this->handleFileUpload($request->file('about_mission_img'), 'uploads/about');
-            Setting::set('about_mission_img', $path);
-        }
-
-        return redirect()->route('admin.settings.index')->with('success', 'Ayarlar başarıyla güncellendi.');
+        return redirect()->route('admin.settings.index')->with('success', 'Genel ayarlar başarıyla güncellendi.');
     }
 
     /**

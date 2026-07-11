@@ -322,3 +322,30 @@
     .bt-logo-img { max-width: 100px; }
     .dest-section { padding-left: 1.5rem; padding-right: 1.5rem; }
 }
+
+/* ── DESTINATION EXPLORE BUTTON ── */
+.btn-dest-explore {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-family: var(--font-body), sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: var(--near-black);
+    border-bottom: 1px solid var(--accent, #c8a96e);
+    padding-bottom: 0.3rem;
+    transition: color 0.3s, border-color 0.3s;
+    width: fit-content;
+}
+
+.dest-card-h:hover .btn-dest-explore {
+    color: var(--accent, #c8a96e);
+    border-bottom-color: var(--near-black);
+}
+
+.dest-card-h:hover .btn-dest-explore svg {
+    transform: translateX(4px);
+}
+

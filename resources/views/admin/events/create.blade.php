@@ -50,13 +50,8 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_tr">Kısa Açıklama (TR)</label>
-                    <textarea name="desc[tr]" id="desc_tr" class="form-control" placeholder="Kartta görünecek kısa açıklama..." required style="min-height: 100px;">{{ old('desc.tr') }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="long_desc_tr">Detaylı Açıklama (TR)</label>
-                    <textarea name="long_desc[tr]" id="long_desc_tr" class="form-control" placeholder="Detay sayfasında görünecek uzun açıklama (boş bırakılırsa kısa açıklama kullanılır)..." style="min-height: 200px;">{{ old('long_desc.tr') }}</textarea>
+                    <label class="form-label" for="desc_tr">Açıklama (TR)</label>
+                    <textarea name="desc[tr]" id="desc_tr" class="form-control" placeholder="Etkinlik açıklaması..." required style="min-height: 120px;">{{ old('desc.tr') }}</textarea>
                 </div>
             </div>
 
@@ -64,7 +59,7 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="title_en">Event Title (EN)</label>
-                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. Bodrum Jazz Festival" value="{{ old('title.en') }}">
+                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. Bodrum Jazz Festival" value="{{ old('title.en') }}" required>
                 </div>
                 
                 <div class="form-group">
@@ -74,22 +69,17 @@
 
                 <div class="form-group">
                     <label class="form-label" for="month_en">Month Info (EN)</label>
-                    <input type="text" name="month[en]" id="month_en" class="form-control" placeholder="e.g. JUNE" value="{{ old('month.en') }}">
+                    <input type="text" name="month[en]" id="month_en" class="form-control" placeholder="e.g. JUNE" value="{{ old('month.en') }}" required>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label" for="loc_en">Venue / Location (EN)</label>
-                    <input type="text" name="loc[en]" id="loc_en" class="form-control" placeholder="e.g. Antique Theatre, Bodrum" value="{{ old('loc.en') }}">
+                    <input type="text" name="loc[en]" id="loc_en" class="form-control" placeholder="e.g. Antique Theatre, Bodrum" value="{{ old('loc.en') }}" required>
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Short description for listing cards..." style="min-height: 100px;">{{ old('desc.en') }}</textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-label" for="long_desc_en">Detailed Description (EN)</label>
-                    <textarea name="long_desc[en]" id="long_desc_en" class="form-control" placeholder="Detailed description for the detail page (falls back to short description if empty)..." style="min-height: 200px;">{{ old('long_desc.en') }}</textarea>
+                    <label class="form-label" for="desc_en">Description (EN)</label>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Event description..." required style="min-height: 120px;">{{ old('desc.en') }}</textarea>
                 </div>
             </div>
 
@@ -97,16 +87,23 @@
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <!-- Day Info -->
+                <div class="form-group">
+                    <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
+                    <input type="text" name="day" id="day" class="form-control" placeholder="Örn: 15 veya 15-18" value="{{ old('day') }}" required>
+                    <small style="color: var(--text-muted); display:block; margin-top:0.25rem;">Etkinliğin yapılacağı günleri sayısal olarak girin.</small>
+                </div>
+
                 <!-- Cover Image -->
                 <div>
-                    <label class="form-label">Ana Görsel (Kapak)</label>
+                    <label class="form-label">Görsel (Kapak)</label>
                     <div style="display: flex; flex-direction: column; gap: 0.5rem;">
                         <input type="file" name="img_file" id="img_file" accept="image/*" style="display:none;" onchange="previewImage(this, 'img_preview')">
                         <button type="button" class="btn btn-outline" onclick="document.getElementById('img_file').click()">
                             <i class="fas fa-image"></i> Görsel Dosyası Seç
                         </button>
                         
-                        <div class="image-preview-box" id="img_preview">
+                        <div class="image-preview-box" id="img_preview" style="max-width: 300px; height: 180px;">
                             <span class="image-preview-text">Önizleme Yok</span>
                         </div>
 
@@ -115,53 +112,6 @@
                             <input type="text" name="img_url" id="img_url" class="form-control" placeholder="Örn: foto.img/bodrum_event.jpg" value="{{ old('img_url') }}">
                         </div>
                     </div>
-                </div>
-
-                <!-- Gallery Upload -->
-                <div>
-                    <label class="form-label">Galeri Görselleri (Çoklu)</label>
-                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
-                        <input type="file" name="gallery_files[]" id="gallery_files" accept="image/*" multiple style="display:none;" onchange="previewMultipleImages(this, 'gallery_preview')">
-                        <button type="button" class="btn btn-outline" onclick="document.getElementById('gallery_files').click()">
-                            <i class="fas fa-images"></i> Galeri Dosyaları Seç
-                        </button>
-                        
-                        <div id="gallery_preview" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(70px, 1fr)); gap: 0.5rem; margin-top: 0.5rem; min-height: 110px; border: 1px dashed var(--border-color); padding: 0.5rem; border-radius: var(--radius-sm); background: rgba(15,23,42,0.3);">
-                            <div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size: 0.8rem;" id="gallery_preview_text">
-                                Seçilen Görsel Yok
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Settings, Day Info & Videos -->
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <!-- Day Info -->
-                <div>
-                    <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
-                    <input type="text" name="day" id="day" class="form-control" placeholder="Örn: 15 veya 15-18" value="{{ old('day') }}" required>
-                    <small style="color: var(--text-muted); display:block; margin-top:0.25rem;">Etkinliğin yapılacağı günleri sayısal olarak girin.</small>
-                </div>
-
-                <!-- Phone Info -->
-                <div>
-                    <label class="form-label" for="phone">Telefon Numarası (WhatsApp için)</label>
-                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Örn: +90 532 000 0000" value="{{ old('phone') }}">
-                    <small style="color: var(--text-muted); display:block; margin-top:0.25rem;">Bu numara girilirse, WhatsApp bilgi butonu bu numaraya yönlendirilecektir.</small>
-                </div>
-            </div>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div>
-                    <label class="form-label">Video Yükle (MP4 / MOV)</label>
-                    <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control">
-                </div>
-                <div>
-                    <label class="form-label" for="video_url">Veya YouTube Video Linki</label>
-                    <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url') }}">
                 </div>
             </div>
 
@@ -191,37 +141,6 @@
                 reader.readAsDataURL(input.files[0]);
             } else {
                 previewBox.innerHTML = '<span class="image-preview-text">Önizleme Yok</span>';
-            }
-        }
-
-        function previewMultipleImages(input, previewGridId) {
-            const previewGrid = document.getElementById(previewGridId);
-            previewGrid.innerHTML = '';
-            
-            if (input.files && input.files.length > 0) {
-                for (let i = 0; i < input.files.length; i++) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const div = document.createElement('div');
-                        div.style.width = '100%';
-                        div.style.aspectRatio = '1';
-                        div.style.borderRadius = '4px';
-                        div.style.overflow = 'hidden';
-                        div.style.border = '1px solid var(--border-color)';
-                        
-                        const img = document.createElement('img');
-                        img.setAttribute('src', e.target.result);
-                        img.style.width = '100%';
-                        img.style.height = '100%';
-                        img.style.objectFit = 'cover';
-                        
-                        div.appendChild(img);
-                        previewGrid.appendChild(div);
-                    }
-                    reader.readAsDataURL(input.files[i]);
-                }
-            } else {
-                previewGrid.innerHTML = '<div style="grid-column: 1/-1; display:flex; align-items:center; justify-content:center; color: var(--text-muted); font-size: 0.8rem;">Seçilen Görsel Yok</div>';
             }
         }
     </script>

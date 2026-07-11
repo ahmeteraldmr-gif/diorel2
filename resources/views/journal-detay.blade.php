@@ -309,8 +309,8 @@
             <!-- Full Content -->
             @if($journal->content && (($journal->content['tr'] ?? '') || ($journal->content['en'] ?? '')))
                 <div class="jd-content">
-                    <div class="lang-text-tr">{!! $journal->content['tr'] ?? '' !!}</div>
-                    <div class="lang-text-en">{!! $journal->content['en'] ?? '' !!}</div>
+                    <div class="lang-text-tr">{!! nl2br(e($journal->content['tr'] ?? '')) !!}</div>
+                    <div class="lang-text-en">{!! nl2br(e($journal->content['en'] ?? '')) !!}</div>
                 </div>
             @else
                 <div class="jd-content" style="color: var(--mid-gray); text-align: center; padding: 4rem 0;">

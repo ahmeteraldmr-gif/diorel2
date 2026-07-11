@@ -49,12 +49,12 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="name_en">Destination Name (EN)</label>
-                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Cappadocia" value="{{ old('name.en') }}">
+                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Cappadocia" value="{{ old('name.en') }}" required>
                 </div>
                 
                 <div class="form-group">
                     <label class="form-label" for="region_en">Region / Subtitle (EN)</label>
-                    <input type="text" name="region[en]" id="region_en" class="form-control" placeholder="e.g. Nevsehir" value="{{ old('region.en') }}">
+                    <input type="text" name="region[en]" id="region_en" class="form-control" placeholder="e.g. Nevsehir" value="{{ old('region.en') }}" required>
                 </div>
 
                 <div class="form-group">

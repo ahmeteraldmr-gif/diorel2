@@ -2,128 +2,89 @@
 
 @yield('title', 'Genel Ayarlar')
 
-@section('page_title', 'Sistem Ayarları')
-@section('page_subtitle', 'Sitenin genel ayarları, hakkımızda sayfası, iletişim ve sosyal medya kanalları ile referans markaları yönetin.')
+@section('page_title', 'Genel Ayarlar')
+@section('page_subtitle', 'Sitenin iletişim bilgileri, sosyal ağ entegrasyonları, hero başlıkları, anasayfa/hakkımızda içerikleri ve marka referanslarının yönetimi.')
 
 @section('content')
 <style>
-    .settings-nav-tabs {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        background: rgba(15, 23, 42, 0.4);
-        border: 1px solid var(--border-color);
-        padding: 0.5rem;
-        border-radius: var(--radius-lg);
-        margin-bottom: 2rem;
-    }
-    .settings-tab-btn {
-        background: transparent;
+    .tab-btn {
+        background: none;
         border: none;
-        color: var(--text-muted);
-        font-family: var(--font-body);
-        font-size: 0.95rem;
+        padding: 0.75rem 1.5rem;
+        font-family: var(--font-body), sans-serif;
+        font-size: 0.9rem;
         font-weight: 600;
-        padding: 0.75rem 1.25rem;
-        border-radius: var(--radius-md);
+        color: rgba(255, 255, 255, 0.5) !important;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+        border-bottom: 2px solid transparent;
+        margin-bottom: -2px;
         transition: all 0.3s ease;
     }
-    .settings-tab-btn:hover {
-        color: var(--text-color);
-        background: rgba(255, 255, 255, 0.05);
+    .tab-btn:hover {
+        color: #ffffff !important;
     }
-    .settings-tab-btn.active {
-        color: var(--near-black);
-        background: var(--primary);
+    .tab-btn.active {
+        color: var(--primary, #c8a96e) !important;
+        border-bottom-color: var(--primary, #c8a96e) !important;
     }
-    .settings-tab-pane {
+    .setting-tab-pane {
         display: none;
-        animation: fadeIn 0.4s ease;
     }
-    .settings-tab-pane.active {
+    .setting-tab-pane.active {
         display: block;
     }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .image-preview-container {
+    .img-preview-container {
         display: flex;
         align-items: center;
         gap: 1.5rem;
         background: rgba(255, 255, 255, 0.02);
-        border: 1px dashed var(--border-color);
+        border: 1px solid var(--border-color);
         padding: 1rem;
         border-radius: var(--radius-md);
         margin-top: 0.5rem;
-        margin-bottom: 1rem;
     }
-    .image-preview-box {
+    .img-preview {
         width: 120px;
         height: 80px;
-        border-radius: var(--radius-sm);
-        overflow: hidden;
-        border: 1px solid var(--border-color);
-        background: rgba(0, 0, 0, 0.2);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .image-preview-box img {
-        max-width: 100%;
-        max-height: 100%;
         object-fit: cover;
+        border-radius: 4px;
+        background: #111;
+        border: 1px solid rgba(255,255,255,0.1);
     }
-    .image-preview-info {
-        flex: 1;
-        font-size: 0.85rem;
-        color: var(--text-muted);
-    }
-    
-    .section-title {
-        color: var(--primary);
-        font-family: var(--font-display);
-        font-size: 1.25rem;
-        margin-bottom: 1.5rem;
+    .form-section-title {
+        color: var(--primary, #c8a96e);
         border-bottom: 1px solid var(--border-color);
         padding-bottom: 0.5rem;
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+        font-size: 1.1rem;
+        font-weight: 500;
     }
 </style>
 
-<!-- Settings Navigation Tabs -->
-<div class="settings-nav-tabs">
-    <button type="button" class="settings-tab-btn active" data-tab="tab-general" onclick="openSettingsTab('tab-general')">
-        <i class="fas fa-sliders-h"></i> Genel & Hero Ayarları
-    </button>
-    <button type="button" class="settings-tab-btn" data-tab="tab-about" onclick="openSettingsTab('tab-about')">
-        <i class="fas fa-info-circle"></i> Hakkımızda Sayfası
-    </button>
-    <button type="button" class="settings-tab-btn" data-tab="tab-contact" onclick="openSettingsTab('tab-contact')">
-        <i class="fas fa-envelope"></i> İletişim & Sosyal Medya
-    </button>
-    <button type="button" class="settings-tab-btn" data-tab="tab-brands" onclick="openSettingsTab('tab-brands')">
-        <i class="fas fa-handshake"></i> Marka Referansları
-    </button>
-</div>
-
-<!-- Main Settings Form -->
-<form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data">
-    @csrf
-
-    <!-- TAB 1: GENERAL & HERO -->
-    <div id="tab-general" class="settings-tab-pane active">
-        <div class="panel-card">
-            <div class="panel-card-header">
-                <h3 class="panel-card-title"><i class="fas fa-home" style="color: var(--primary); margin-right: 0.5rem;"></i> Genel Giriş Ayarları</h3>
-            </div>
+<div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;">
+    
+    <!-- General settings form -->
+    <div class="panel-card">
+        <div class="panel-card-header" style="flex-direction: column; align-items: flex-start; gap: 1rem; border-bottom: none; padding-bottom: 0;">
+            <h3 class="panel-card-title">
+                <i class="fas fa-sliders-h" style="color: var(--primary); margin-right: 0.5rem;"></i> Genel Ayarları Güncelle
+            </h3>
             
-            <div style="margin-bottom: 2rem;">
-                <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.05rem;">Hero Giriş Başlığı</h4>
+            <div class="tabs-navigation" style="display: flex; gap: 0.5rem; border-bottom: 2px solid var(--border-color); width: 100%;">
+                <button type="button" class="tab-btn active" onclick="switchSettingTab(event, 'tab-general')">İletişim & Genel</button>
+                <button type="button" class="tab-btn" onclick="switchSettingTab(event, 'tab-homepage')">Anasayfa İçeriği</button>
+                <button type="button" class="tab-btn" onclick="switchSettingTab(event, 'tab-about')">Hakkımızda İçeriği</button>
+            </div>
+        </div>
+
+        <form action="{{ route('admin.settings.update') }}" method="POST" enctype="multipart/form-data" style="padding: 1.5rem;">
+            @csrf
+
+            <!-- ── TAB 1: GENERAL & CONTACT ── -->
+            <div id="tab-general" class="setting-tab-pane active">
+                
+                <h4 class="form-section-title" style="margin-top: 0;">Hero Giriş Başlığı</h4>
                 <div class="lang-tabs-container">
                     <button type="button" class="lang-tab active" data-lang="tr" onclick="switchLanguageTab('tr')">Türkçe</button>
                     <button type="button" class="lang-tab" data-lang="en" onclick="switchLanguageTab('en')">English</button>
@@ -133,6 +94,7 @@
                     <div class="form-group">
                         <label class="form-label" for="hero_title_tr">Ana Başlık (TR)</label>
                         <textarea class="form-control" name="hero_title_tr" id="hero_title_tr" rows="2" placeholder="Örn: Türkiye ve dünyada seçkin&#10;deneyimlerin kapısını aralıyoruz.">{{ $settings['hero_title_tr'] ?? '' }}</textarea>
+                        <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">Satır atlamak istediğiniz yerlerde normal Enter tuşuna basabilirsiniz.</small>
                     </div>
                 </div>
 
@@ -140,295 +102,500 @@
                     <div class="form-group">
                         <label class="form-label" for="hero_title_en">Ana Başlık (EN)</label>
                         <textarea class="form-control" name="hero_title_en" id="hero_title_en" rows="2" placeholder="Örn: Opening doors to exclusive&#10;experiences globally.">{{ $settings['hero_title_en'] ?? '' }}</textarea>
+                        <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">Satır atlamak istediğiniz yerlerde normal Enter tuşuna basabilirsiniz.</small>
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 1.5rem;">
+                    <!-- Contact Info Section -->
+                    <div>
+                        <h4 class="form-section-title" style="margin-top: 0;">İletişim Bilgileri</h4>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="contact_email">E-posta Adresi</label>
+                            <input type="email" class="form-control" name="contact_email" id="contact_email" value="{{ $settings['contact_email'] ?? '' }}" placeholder="info@diorealdijital.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact_phone">Telefon Numarası</label>
+                            <input type="text" class="form-control" name="contact_phone" id="contact_phone" value="{{ $settings['contact_phone'] ?? '' }}" placeholder="+90 212 555 0100">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact_address_tr">Adres (TR)</label>
+                            <input type="text" class="form-control" name="contact_address_tr" id="contact_address_tr" value="{{ $settings['contact_address_tr'] ?? '' }}" placeholder="İstanbul, Türkiye">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="contact_address_en">Adres (EN)</label>
+                            <input type="text" class="form-control" name="contact_address_en" id="contact_address_en" value="{{ $settings['contact_address_en'] ?? '' }}" placeholder="Istanbul, Turkey">
+                        </div>
+                    </div>
+
+                    <!-- Social Media & Integrations -->
+                    <div>
+                        <h4 class="form-section-title" style="margin-top: 0;">Sosyal Ağlar & Entegrasyonlar</h4>
+
+                        <div class="form-group">
+                            <label class="form-label" for="instagram">Instagram Profili</label>
+                            <input type="url" class="form-control" name="instagram" id="instagram" value="{{ $settings['instagram'] ?? '' }}" placeholder="https://instagram.com/kullanici">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="linkedin">LinkedIn Profili</label>
+                            <input type="url" class="form-control" name="linkedin" id="linkedin" value="{{ $settings['linkedin'] ?? '' }}" placeholder="https://linkedin.com/company/sirket">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="whatsapp">WhatsApp Buton Numarası</label>
+                            <input type="text" class="form-control" name="whatsapp" id="whatsapp" value="{{ $settings['whatsapp'] ?? '' }}" placeholder="905320000000">
+                            <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">Numaranın başına + veya 0 koymadan, ülke koduyla bitişik yazın (Örn: 905321234567).</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label" for="footer_copy">Footer Telif Yazısı (Copyright)</label>
+                            <input type="text" class="form-control" name="footer_copy" id="footer_copy" value="{{ $settings['footer_copy'] ?? '' }}" placeholder="© 2026 Dioreal Dijital. All Rights Reserved.">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label class="form-label" for="footer_copy">Footer Telif Yazısı (Copyright)</label>
-                <input type="text" class="form-control" name="footer_copy" id="footer_copy" value="{{ $settings['footer_copy'] ?? '' }}" placeholder="© 2026 Dioreal Dijital. All Rights Reserved.">
-            </div>
-        </div>
-    </div>
-
-    <!-- TAB 2: ABOUT PAGE -->
-    <div id="tab-about" class="settings-tab-pane">
-        <div class="panel-card">
-            <div class="panel-card-header">
-                <h3 class="panel-card-title"><i class="fas fa-edit" style="color: var(--primary); margin-right: 0.5rem;"></i> Hakkımızda Sayfası İçerikleri</h3>
-            </div>
-
-            <!-- Lang Switcher inside About Tab -->
-            <div class="lang-tabs-container" style="margin-bottom: 2rem;">
-                <button type="button" class="lang-tab active" data-lang="tr" onclick="switchLanguageTab('tr')">Türkçe Form</button>
-                <button type="button" class="lang-tab" data-lang="en" onclick="switchLanguageTab('en')">English Form</button>
-            </div>
-
-            <!-- TR PANEL -->
-            <div class="lang-pane active" data-lang="tr">
-                <!-- Hero Header -->
-                <div class="section-title">Hakkımızda Giriş Alanı (TR)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+            <!-- ── TAB 2: HOMEPAGE CONTENT ── -->
+            <div id="tab-homepage" class="setting-tab-pane">
+                
+                <!-- Hero Background Slides -->
+                <h4 class="form-section-title" style="margin-top: 0;">Anasayfa Hero Slayt Görselleri</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
                     <div class="form-group">
-                        <label class="form-label">Üst Küçük Başlık (TR)</label>
-                        <input type="text" class="form-control" name="about_eyebrow_tr" value="{{ $settings['about_eyebrow_tr'] ?? 'Biz Kimiz' }}">
+                        <label class="form-label">Slayt 1 Görseli</label>
+                        <div class="img-preview-container">
+                            <img class="img-preview" src="{{ asset($settings['hero_slide_1'] ?? 'foto.img/hero_4k.jpg') }}" alt="Slide 1">
+                            <input type="file" name="hero_slide_1" accept="image/*">
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Ana Büyük Başlık (TR)</label>
-                        <input type="text" class="form-control" name="about_title_tr" value="{{ $settings['about_title_tr'] ?? 'Dioreal Dijital' }}">
+                        <label class="form-label">Slayt 2 Görseli</label>
+                        <div class="img-preview-container">
+                            <img class="img-preview" src="{{ asset($settings['hero_slide_2'] ?? 'foto.img/hero_slide_2.jpg') }}" alt="Slide 2">
+                            <input type="file" name="hero_slide_2" accept="image/*">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Slayt 3 Görseli</label>
+                        <div class="img-preview-container">
+                            <img class="img-preview" src="{{ asset($settings['hero_slide_3'] ?? 'foto.img/hero_slide_3.jpg') }}" alt="Slide 3">
+                            <input type="file" name="hero_slide_3" accept="image/*">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manifesto Selection -->
+                <h4 class="form-section-title">Bu Ayın Seçkinleri (Manifesto Başlığı)</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label" for="man_eyebrow_tr">Üst Başlık (TR)</label>
+                        <input type="text" class="form-control" name="man_eyebrow_tr" id="man_eyebrow_tr" value="{{ $settings['man_eyebrow_tr'] ?? 'BU AYIN SEÇKİNLERİ' }}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="man_eyebrow_en">Üst Başlık (EN)</label>
+                        <input type="text" class="form-control" name="man_eyebrow_en" id="man_eyebrow_en" value="{{ $settings['man_eyebrow_en'] ?? "THIS MONTH'S SELECTION" }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="man_p1_tr">Açıklama Metni (TR)</label>
+                    <textarea class="form-control" name="man_p1_tr" id="man_p1_tr" rows="3">{{ $settings['man_p1_tr'] ?? 'Sizler için özenle seçtiğimiz bu ayın en trend otel, restoran, yat ve plaj lokasyonlarının ardındaki eşsiz hikayeleri keşfedin.' }}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="man_p1_en">Açıklama Metni (EN)</label>
+                    <textarea class="form-control" name="man_p1_en" id="man_p1_en" rows="3">{{ $settings['man_p1_en'] ?? "Explore the unique stories behind this month's trending hotels, restaurants, yachts, and beach spots carefully selected for you." }}</textarea>
+                </div>
+
+                <!-- Trends Cards Grid -->
+                <h4 class="form-section-title">Seçkin Trend Lokasyon Kartları</h4>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    
+                    <!-- Trend 1: Otel -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-lg);">
+                        <h5 style="color: var(--primary); font-size: 1rem; margin-bottom: 1rem;"><i class="fas fa-hotel"></i> Trend 1: Otel Kartı</h5>
+                        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (TR)</label>
+                                        <input type="text" class="form-control" name="trend_otel_title_tr" value="{{ $settings['trend_otel_title_tr'] ?? 'Kassandra Villa' }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (EN)</label>
+                                        <input type="text" class="form-control" name="trend_otel_title_en" value="{{ $settings['trend_otel_title_en'] ?? 'Kassandra Villa' }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (TR)</label>
+                                    <input type="text" class="form-control" name="trend_otel_desc_tr" value="{{ $settings['trend_otel_desc_tr'] ?? 'Ege\'nin gizli kalmış koylarında uyanmanın eşsiz hissi.' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (EN)</label>
+                                    <input type="text" class="form-control" name="trend_otel_desc_en" value="{{ $settings['trend_otel_desc_en'] ?? 'The unique feeling of waking up in the hidden bays of the Aegean.' }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Görsel</label>
+                                <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                                    <img class="img-preview" src="{{ asset($settings['trend_otel_img'] ?? 'foto.img/about_safari.jpg') }}" alt="Trend Otel">
+                                    <input type="file" name="trend_otel_img" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trend 2: Restoran -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-lg);">
+                        <h5 style="color: var(--primary); font-size: 1rem; margin-bottom: 1rem;"><i class="fas fa-utensils"></i> Trend 2: Restoran Kartı</h5>
+                        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (TR)</label>
+                                        <input type="text" class="form-control" name="trend_rest_title_tr" value="{{ $settings['trend_rest_title_tr'] ?? 'Melengeç' }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (EN)</label>
+                                        <input type="text" class="form-control" name="trend_rest_title_en" value="{{ $settings['trend_rest_title_en'] ?? 'Melengeç' }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (TR)</label>
+                                    <input type="text" class="form-control" name="trend_rest_desc_tr" value="{{ $settings['trend_rest_desc_tr'] ?? 'Taze deniz ürünleri ile unutulmaz bir gastronomi yolculuğu.' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (EN)</label>
+                                    <input type="text" class="form-control" name="trend_rest_desc_en" value="{{ $settings['trend_rest_desc_en'] ?? 'An unforgettable gastronomic journey with fresh seafood.' }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Görsel</label>
+                                <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                                    <img class="img-preview" src="{{ asset($settings['trend_rest_img'] ?? 'foto.img/rest_mikla.jpg') }}" alt="Trend Restoran">
+                                    <input type="file" name="trend_rest_img" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trend 3: Yat -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-lg);">
+                        <h5 style="color: var(--primary); font-size: 1rem; margin-bottom: 1rem;"><i class="fas fa-ship"></i> Trend 3: Yat Kartı</h5>
+                        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (TR)</label>
+                                        <input type="text" class="form-control" name="trend_yat_title_tr" value="{{ $settings['trend_yat_title_tr'] ?? 'Blue Voyage' }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (EN)</label>
+                                        <input type="text" class="form-control" name="trend_yat_title_en" value="{{ $settings['trend_yat_title_en'] ?? 'Blue Voyage' }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (TR)</label>
+                                    <input type="text" class="form-control" name="trend_yat_desc_tr" value="{{ $settings['trend_yat_desc_tr'] ?? 'Sonsuz mavilikte rotalar. Rüzgarın sesinden başka hiçbir şey yok.' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (EN)</label>
+                                    <input type="text" class="form-control" name="trend_yat_desc_en" value="{{ $settings['trend_yat_desc_en'] ?? 'Routes in infinite blue. Nothing but the sound of the wind.' }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Görsel</label>
+                                <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                                    <img class="img-preview" src="{{ asset($settings['trend_yat_img'] ?? 'foto.img/about_yacht.jpg') }}" alt="Trend Yat">
+                                    <input type="file" name="trend_yat_img" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trend 4: Beach -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1.5rem; border-radius: var(--radius-lg);">
+                        <h5 style="color: var(--primary); font-size: 1rem; margin-bottom: 1rem;"><i class="fas fa-umbrella-beach"></i> Trend 4: Plaj Kartı</h5>
+                        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+                            <div>
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (TR)</label>
+                                        <input type="text" class="form-control" name="trend_beach_title_tr" value="{{ $settings['trend_beach_title_tr'] ?? 'Rups Beach' }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Kart Başlığı (EN)</label>
+                                        <input type="text" class="form-control" name="trend_beach_title_en" value="{{ $settings['trend_beach_title_en'] ?? 'Rups Beach' }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (TR)</label>
+                                    <input type="text" class="form-control" name="trend_beach_desc_tr" value="{{ $settings['trend_beach_desc_tr'] ?? 'Altın kumlar ve kristal sular. Müziğin ritmine eşlik eden anlar.' }}">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Alt Açıklama (EN)</label>
+                                    <input type="text" class="form-control" name="trend_beach_desc_en" value="{{ $settings['trend_beach_desc_en'] ?? 'Golden sands and crystal waters. Moments accompanying the rhythm of the music.' }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Görsel</label>
+                                <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                                    <img class="img-preview" src="{{ asset($settings['trend_beach_img'] ?? 'foto.img/bodrum.jpg') }}" alt="Trend Beach">
+                                    <input type="file" name="trend_beach_img" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- ── TAB 3: ABOUT PAGE CONTENT ── -->
+            <div id="tab-about" class="setting-tab-pane">
+                
+                <!-- Hero Section -->
+                <h4 class="form-section-title" style="margin-top: 0;">Hakkımızda Hero Bölümü</h4>
+                <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık / Eyebrow (TR)</label>
+                                <input type="text" class="form-control" name="about_hero_eyebrow_tr" value="{{ $settings['about_hero_eyebrow_tr'] ?? 'Biz Kimiz' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık / Eyebrow (EN)</label>
+                                <input type="text" class="form-control" name="about_hero_eyebrow_en" value="{{ $settings['about_hero_eyebrow_en'] ?? 'Who We Are' }}">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Ana Başlık (TR)</label>
+                                <input type="text" class="form-control" name="about_hero_title_tr" value="{{ $settings['about_hero_title_tr'] ?? 'Dioreal Dijital' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Ana Başlık (EN)</label>
+                                <input type="text" class="form-control" name="about_hero_title_en" value="{{ $settings['about_hero_title_en'] ?? 'Dioreal Digital' }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hero Arka Plan Görseli</label>
+                        <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                            <img class="img-preview" src="{{ asset($settings['about_hero_img'] ?? 'foto.img/hero_4k.jpg') }}" alt="About Hero">
+                            <input type="file" name="about_hero_img" accept="image/*">
+                        </div>
                     </div>
                 </div>
 
                 <!-- Story Section -->
-                <div class="section-title" style="margin-top: 2rem;">Hikayemiz Bölümü (TR)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Üst Küçük Başlık (TR)</label>
-                        <input type="text" class="form-control" name="about_story_eyebrow_tr" value="{{ $settings['about_story_eyebrow_tr'] ?? 'Hikayemiz' }}">
+                <h4 class="form-section-title">Hikayemiz Bölümü</h4>
+                <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+                    <div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık (TR)</label>
+                                <input type="text" class="form-control" name="about_story_eyebrow_tr" value="{{ $settings['about_story_eyebrow_tr'] ?? 'Hikayemiz' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık (EN)</label>
+                                <input type="text" class="form-control" name="about_story_eyebrow_en" value="{{ $settings['about_story_eyebrow_en'] ?? 'Our Story' }}">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Hikaye Başlığı (TR)</label>
+                                <input type="text" class="form-control" name="about_story_title_tr" value="{{ $settings['about_story_title_tr'] ?? '15 yıldır lüks seyahatin sesi' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Hikaye Başlığı (EN)</label>
+                                <input type="text" class="form-control" name="about_story_title_en" value="{{ $settings['about_story_title_en'] ?? 'Voice of luxury travel for 15 years' }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 1 (TR)</label>
+                            <textarea class="form-control" name="about_story_p1_tr" rows="2">{{ $settings['about_story_p1_tr'] ?? '2010 yılında İstanbul\'da kurulan Dioreal Dijital, Türkiye\'nin öncü lüks seyahat ve yaşam tarzı medya platformuna dönüşmüştür.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 1 (EN)</label>
+                            <textarea class="form-control" name="about_story_p1_en" rows="2">{{ $settings['about_story_p1_en'] ?? 'Founded in Istanbul in 2010, Dioreal Digital has evolved into Turkey\'s leading luxury travel and lifestyle media platform.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 2 (TR)</label>
+                            <textarea class="form-control" name="about_story_p2_tr" rows="2">{{ $settings['about_story_p2_tr'] ?? 'Her destinasyonda bizzat bulunarak, her oteli bizatihi deneyimleyerek ve her markayı özenle seçerek güvenilir bir referans noktası haline geldik.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 2 (EN)</label>
+                            <textarea class="form-control" name="about_story_p2_en" rows="2">{{ $settings['about_story_p2_en'] ?? 'By personally visiting every destination and experiencing every hotel firsthand, we\'ve become a trusted reference.' }}</textarea>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Bölüm Başlığı (TR)</label>
-                        <input type="text" class="form-control" name="about_story_title_tr" value="{{ $settings['about_story_title_tr'] ?? '15 yıldır lüks seyahatin sesi' }}">
+                        <label class="form-label">Hikayemiz Bölüm Görseli</label>
+                        <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                            <img class="img-preview" src="{{ asset($settings['about_story_img'] ?? 'foto.img/about_yacht.jpg') }}" alt="Story Image">
+                            <input type="file" name="about_story_img" accept="image/*">
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraf 1 (TR)</label>
-                    <textarea class="form-control" name="about_p1_tr" rows="3">{{ $settings['about_p1_tr'] ?? '2010 yılında İstanbul\'da kurulan Dioreal Dijital, Türkiye\'nin öncü lüks seyahat ve yaşam tarzı medya platformuna dönüşmüştür. Seçkin destinasyonlar, premium markalar ve doğru kitleyi bir araya getiren köprü olmak misyonuyla kurulduk.' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraf 2 (TR)</label>
-                    <textarea class="form-control" name="about_p2_tr" rows="3">{{ $settings['about_p2_tr'] ?? 'Her destinasyonda bizzat bulunarak, her oteli bizatihi deneyimleyerek ve her markayı özenle seçerek güvenilir bir referans noktası haline geldik.' }}</textarea>
                 </div>
 
-                <!-- Stats Section Header -->
-                <div class="section-title" style="margin-top: 2rem;">İstatistik Sayaçları (TR)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                <!-- Stats Section -->
+                <h4 class="form-section-title">İstatistikler & Rakamlar</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div class="form-group">
-                        <label class="form-label">Sayaç Üst Küçük Başlık (TR)</label>
-                        <input type="text" class="form-control" name="about_stats_eyebrow_tr" value="{{ $settings['about_stats_eyebrow_tr'] ?? 'Rakamlarla' }}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Sayaç Bölüm Başlığı (TR)</label>
+                        <label class="form-label">Bölüm Başlığı (TR)</label>
                         <input type="text" class="form-control" name="about_stats_title_tr" value="{{ $settings['about_stats_title_tr'] ?? '15 Yılın Mirası' }}">
                     </div>
-                </div>
-
-                <!-- Mission Section -->
-                <div class="section-title" style="margin-top: 2rem;">Misyonumuz Bölümü (TR)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                     <div class="form-group">
-                        <label class="form-label">Üst Küçük Başlık (TR)</label>
-                        <input type="text" class="form-control" name="about_mission_eyebrow_tr" value="{{ $settings['about_mission_eyebrow_tr'] ?? 'Misyonumuz' }}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Bölüm Başlığı (TR)</label>
-                        <input type="text" class="form-control" name="about_mission_title_tr" value="{{ $settings['about_mission_title_tr'] ?? 'Anlamlı deneyimler için' }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraf 1 (TR)</label>
-                    <textarea class="form-control" name="about_mission_p1_tr" rows="3">{{ $settings['about_mission_p1_tr'] ?? 'Dioreal olarak misyonumuz, sıradan tatillerin ötesine geçerek iz bırakan anlar tasarlamaktır. Küresel bir vizyonla, lokal zarafeti birleştiriyoruz.' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraf 2 (TR)</label>
-                    <textarea class="form-control" name="about_mission_p2_tr" rows="3">{{ $settings['about_mission_p2_tr'] ?? 'Sadece destinasyon tanıtmakla kalmıyor, lüks yaşam kültürünü ve estetik seyahat felsefesini de paylaşıyoruz.' }}</textarea>
-                </div>
-            </div>
-
-            <!-- EN PANEL -->
-            <div class="lang-pane" data-lang="en">
-                <!-- Hero Header -->
-                <div class="section-title">About Entrance Area (EN)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Top Subtitle (EN)</label>
-                        <input type="text" class="form-control" name="about_eyebrow_en" value="{{ $settings['about_eyebrow_en'] ?? 'Who We Are' }}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Main Large Title (EN)</label>
-                        <input type="text" class="form-control" name="about_title_en" value="{{ $settings['about_title_en'] ?? 'Dioreal Digital' }}">
-                    </div>
-                </div>
-
-                <!-- Story Section -->
-                <div class="section-title" style="margin-top: 2rem;">Our Story Section (EN)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Top Subtitle (EN)</label>
-                        <input type="text" class="form-control" name="about_story_eyebrow_en" value="{{ $settings['about_story_eyebrow_en'] ?? 'Our Story' }}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Section Title (EN)</label>
-                        <input type="text" class="form-control" name="about_story_title_en" value="{{ $settings['about_story_title_en'] ?? '15 years of luxury travel storytelling' }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraph 1 (EN)</label>
-                    <textarea class="form-control" name="about_p1_en" rows="3">{{ $settings['about_p1_en'] ?? 'Founded in 2010 in Istanbul, Dioreal Digital has evolved into Turkey\'s leading luxury travel and lifestyle media platform. We were established with the mission to bridge elite destinations, premium brands, and the right audience.' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraph 2 (EN)</label>
-                    <textarea class="form-control" name="about_p2_en" rows="3">{{ $settings['about_p2_en'] ?? 'By personally visiting each destination, experiencing every hotel, and carefully selecting each brand, we have become a trusted reference point.' }}</textarea>
-                </div>
-
-                <!-- Stats Section Header -->
-                <div class="section-title" style="margin-top: 2rem;">Statistics Counter (EN)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Counter Subtitle (EN)</label>
-                        <input type="text" class="form-control" name="about_stats_eyebrow_en" value="{{ $settings['about_stats_eyebrow_en'] ?? 'By Numbers' }}">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Counter Title (EN)</label>
+                        <label class="form-label">Bölüm Başlığı (EN)</label>
                         <input type="text" class="form-control" name="about_stats_title_en" value="{{ $settings['about_stats_title_en'] ?? 'Legacy of 15 Years' }}">
                     </div>
                 </div>
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                    <!-- Stat 1 -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+                        <h6 style="color: var(--primary); margin-bottom: 0.5rem;">İstatistik 1</h6>
+                        <div class="form-group">
+                            <label class="form-label">Değer (Sayı)</label>
+                            <input type="text" class="form-control" name="about_stat1_num" value="{{ $settings['about_stat1_num'] ?? '150+' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (TR)</label>
+                            <input type="text" class="form-control" name="about_stat1_label_tr" value="{{ $settings['about_stat1_label_tr'] ?? 'Destinasyon' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (EN)</label>
+                            <input type="text" class="form-control" name="about_stat1_label_en" value="{{ $settings['about_stat1_label_en'] ?? 'Destinations' }}">
+                        </div>
+                    </div>
+                    <!-- Stat 2 -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+                        <h6 style="color: var(--primary); margin-bottom: 0.5rem;">İstatistik 2</h6>
+                        <div class="form-group">
+                            <label class="form-label">Değer (Sayı)</label>
+                            <input type="text" class="form-control" name="about_stat2_num" value="{{ $settings['about_stat2_num'] ?? '2M+' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (TR)</label>
+                            <input type="text" class="form-control" name="about_stat2_label_tr" value="{{ $settings['about_stat2_label_tr'] ?? 'Aylık Okuyucu' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (EN)</label>
+                            <input type="text" class="form-control" name="about_stat2_label_en" value="{{ $settings['about_stat2_label_en'] ?? 'Monthly Readers' }}">
+                        </div>
+                    </div>
+                    <!-- Stat 3 -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+                        <h6 style="color: var(--primary); margin-bottom: 0.5rem;">İstatistik 3</h6>
+                        <div class="form-group">
+                            <label class="form-label">Değer (Sayı)</label>
+                            <input type="text" class="form-control" name="about_stat3_num" value="{{ $settings['about_stat3_num'] ?? '300+' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (TR)</label>
+                            <input type="text" class="form-control" name="about_stat3_label_tr" value="{{ $settings['about_stat3_label_tr'] ?? 'Marka Ortağı' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (EN)</label>
+                            <input type="text" class="form-control" name="about_stat3_label_en" value="{{ $settings['about_stat3_label_en'] ?? 'Brand Partners' }}">
+                        </div>
+                    </div>
+                    <!-- Stat 4 -->
+                    <div style="background: rgba(255, 255, 255, 0.01); border: 1px solid var(--border-color); padding: 1rem; border-radius: var(--radius-md);">
+                        <h6 style="color: var(--primary); margin-bottom: 0.5rem;">İstatistik 4</h6>
+                        <div class="form-group">
+                            <label class="form-label">Değer (Sayı)</label>
+                            <input type="text" class="form-control" name="about_stat4_num" value="{{ $settings['about_stat4_num'] ?? '15' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (TR)</label>
+                            <input type="text" class="form-control" name="about_stat4_label_tr" value="{{ $settings['about_stat4_label_tr'] ?? 'Yıllık Deneyim' }}">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Etiket (EN)</label>
+                            <input type="text" class="form-control" name="about_stat4_label_en" value="{{ $settings['about_stat4_label_en'] ?? 'Years of Experience' }}">
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Mission Section -->
-                <div class="section-title" style="margin-top: 2rem;">Our Mission Section (EN)</div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Top Subtitle (EN)</label>
-                        <input type="text" class="form-control" name="about_mission_eyebrow_en" value="{{ $settings['about_mission_eyebrow_en'] ?? 'Our Mission' }}">
+                <h4 class="form-section-title">Misyonumuz Bölümü</h4>
+                <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 1.5rem;">
+                    <div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık (TR)</label>
+                                <input type="text" class="form-control" name="about_mission_eyebrow_tr" value="{{ $settings['about_mission_eyebrow_tr'] ?? 'Misyonumuz' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Üst Başlık (EN)</label>
+                                <input type="text" class="form-control" name="about_mission_eyebrow_en" value="{{ $settings['about_mission_eyebrow_en'] ?? 'Our Mission' }}">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label class="form-label">Misyon Başlığı (TR)</label>
+                                <input type="text" class="form-control" name="about_mission_title_tr" value="{{ $settings['about_mission_title_tr'] ?? 'Anlamlı deneyimler için' }}">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Misyon Başlığı (EN)</label>
+                                <input type="text" class="form-control" name="about_mission_title_en" value="{{ $settings['about_mission_title_en'] ?? 'For meaningful experiences' }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 1 (TR)</label>
+                            <textarea class="form-control" name="about_mission_p1_tr" rows="2">{{ $settings['about_mission_p1_tr'] ?? 'Sadece güzel yerler göstermiyoruz. Seyahatin ruhunu, bir destinasyonun gerçek özünü, yerel kültürün derinliğini aktarıyoruz.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 1 (EN)</label>
+                            <textarea class="form-control" name="about_mission_p1_en" rows="2">{{ $settings['about_mission_p1_en'] ?? 'We don\'t just show beautiful places. We convey the true essence of a destination.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 2 (TR)</label>
+                            <textarea class="form-control" name="about_mission_p2_tr" rows="2">{{ $settings['about_mission_p2_tr'] ?? 'Okuyucularımız bize güvenir, markalarımız bize inanır, destinasyonlar bizi ortaklık arar çünkü söylediğimiz her şey gerçek.' }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Paragraf 2 (EN)</label>
+                            <textarea class="form-control" name="about_mission_p2_en" rows="2">{{ $settings['about_mission_p2_en'] ?? 'Our readers trust us, our brands believe in us, and destinations seek partnerships because everything we say is authentic.' }}</textarea>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Section Title (EN)</label>
-                        <input type="text" class="form-control" name="about_mission_title_en" value="{{ $settings['about_mission_title_en'] ?? 'For meaningful experiences' }}">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraph 1 (EN)</label>
-                    <textarea class="form-control" name="about_mission_p1_en" rows="3">{{ $settings['about_mission_p1_en'] ?? 'At Dioreal, our mission is to go beyond ordinary vacations and design moments that leave a lasting mark. We combine a global vision with local sophistication.' }}</textarea>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Paragraph 2 (EN)</label>
-                    <textarea class="form-control" name="about_mission_p2_en" rows="3">{{ $settings['about_mission_p2_en'] ?? 'We do not just introduce destinations; we also share the luxury lifestyle culture and aesthetic travel philosophy.' }}</textarea>
-                </div>
-            </div>
-
-            <!-- Page Images (Independent of Language Tabs) -->
-            <div class="section-title" style="margin-top: 2.5rem;">Hakkımızda Sayfa Görselleri</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-                
-                <!-- Story Image -->
-                <div>
-                    <label class="form-label" style="font-weight: 600;">Hikayemiz Görseli (Sol Kolon)</label>
-                    <input type="file" class="form-control" name="about_story_img" accept="image/*">
-                    <div class="image-preview-container">
-                        <div class="image-preview-box">
-                            <img src="{{ asset($settings['about_story_img'] ?? 'foto.img/about_yacht.jpg') }}" alt="Hikaye Görseli">
-                        </div>
-                        <div class="image-preview-info">
-                            <strong>Mevcut Görsel</strong><br>
-                            Önerilen Çözünürlük:<br>600x800 veya benzer dikey oran.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mission Image -->
-                <div>
-                    <label class="form-label" style="font-weight: 600;">Misyonumuz Görseli (Sağ Kolon)</label>
-                    <input type="file" class="form-control" name="about_mission_img" accept="image/*">
-                    <div class="image-preview-container">
-                        <div class="image-preview-box">
-                            <img src="{{ asset($settings['about_mission_img'] ?? 'foto.img/about_safari.jpg') }}" alt="Misyon Görseli">
-                        </div>
-                        <div class="image-preview-info">
-                            <strong>Mevcut Görsel</strong><br>
-                            Önerilen Çözünürlük:<br>600x800 veya benzer dikey oran.
+                        <label class="form-label">Misyon Bölüm Görseli</label>
+                        <div class="img-preview-container" style="height: calc(100% - 25px); margin-top: 0;">
+                            <img class="img-preview" src="{{ asset($settings['about_mission_img'] ?? 'foto.img/about_safari.jpg') }}" alt="Mission Image">
+                            <input type="file" name="about_mission_img" accept="image/*">
                         </div>
                     </div>
                 </div>
 
             </div>
 
-        </div>
+            <!-- Form Submit -->
+            <div style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; justify-content: flex-end; margin-top: 2rem;">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Değişiklikleri Kaydet
+                </button>
+            </div>
+        </form>
     </div>
 
-    <!-- TAB 3: CONTACT & SOCIAL MEDIA -->
-    <div id="tab-contact" class="settings-tab-pane">
-        <div class="panel-card">
-            <div class="panel-card-header">
-                <h3 class="panel-card-title"><i class="fas fa-phone-alt" style="color: var(--primary); margin-right: 0.5rem;"></i> İletişim & Sosyal Medya Ayarları</h3>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem;">
-                
-                <!-- Contact Info Section -->
-                <div>
-                    <h4 style="color: var(--primary); margin-bottom: 1.25rem; font-size: 1.05rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">İletişim Bilgileri</h4>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="contact_email">E-posta Adresi</label>
-                        <input type="email" class="form-control" name="contact_email" id="contact_email" value="{{ $settings['contact_email'] ?? '' }}" placeholder="info@diorealdijital.com">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="contact_phone">Telefon Numarası</label>
-                        <input type="text" class="form-control" name="contact_phone" id="contact_phone" value="{{ $settings['contact_phone'] ?? '' }}" placeholder="+90 212 555 0100">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="contact_address_tr">Adres (TR)</label>
-                        <input type="text" class="form-control" name="contact_address_tr" id="contact_address_tr" value="{{ $settings['contact_address_tr'] ?? '' }}" placeholder="İstanbul, Türkiye">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="contact_address_en">Adres (EN)</label>
-                        <input type="text" class="form-control" name="contact_address_en" id="contact_address_en" value="{{ $settings['contact_address_en'] ?? '' }}" placeholder="Istanbul, Turkey">
-                    </div>
-                </div>
-
-                <!-- Social Media & Integrations -->
-                <div>
-                    <h4 style="color: var(--primary); margin-bottom: 1.25rem; font-size: 1.05rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Sosyal Ağlar & Entegrasyonlar</h4>
-
-                    <div class="form-group">
-                        <label class="form-label" for="instagram">Instagram Profili</label>
-                        <input type="url" class="form-control" name="instagram" id="instagram" value="{{ $settings['instagram'] ?? '' }}" placeholder="https://instagram.com/kullanici">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="linkedin">LinkedIn Profili</label>
-                        <input type="url" class="form-control" name="linkedin" id="linkedin" value="{{ $settings['linkedin'] ?? '' }}" placeholder="https://linkedin.com/company/sirket">
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label" for="whatsapp">WhatsApp Buton Numarası</label>
-                        <input type="text" class="form-control" name="whatsapp" id="whatsapp" value="{{ $settings['whatsapp'] ?? '' }}" placeholder="905320000000">
-                        <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">Numaranın başına + veya 0 koymadan, ülke koduyla bitişik yazın (Örn: 905321234567).</small>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Form Submit Action Button (Spans General, About, Contact Tabs) -->
-    <div id="settings-submit-container" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; display: flex; justify-content: flex-end; margin-bottom: 2rem;">
-        <button type="submit" class="btn btn-primary" style="padding: 0.75rem 2rem; font-size: 1rem;">
-            <i class="fas fa-save"></i> Tüm Değişiklikleri Kaydet
-        </button>
-    </div>
-</form>
-
-<!-- TAB 4: BRANDS (Independent form to add/remove brands) -->
-<div id="tab-brands" class="settings-tab-pane">
+    <!-- Brands & Collaborations Management -->
     <div class="panel-card">
         <div class="panel-card-header">
             <h3 class="panel-card-title">
-                <i class="fas fa-handshake" style="color: var(--primary); margin-right: 0.5rem;"></i> Marka Referansları Yönetimi
+                <i class="fas fa-handshake" style="color: var(--primary); margin-right: 0.5rem;"></i> Marka Referansları
             </h3>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem;">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 1.5rem;">
             
             <!-- Existing Brands Grid -->
             <div>
-                <h4 style="color: var(--primary); margin-bottom: 1.25rem; font-size: 1.05rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Mevcut Referans Markalar</h4>
+                <h4 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.05rem;">Mevcut Referanslar</h4>
                 
                 @if(isset($settings['brands']) && is_array($settings['brands']) && count($settings['brands']) > 0)
-                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; max-height: 450px; overflow-y: auto; padding-right: 0.5rem;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; max-height: 400px; overflow-y: auto; padding-right: 0.5rem;">
                         @foreach($settings['brands'] as $index => $brand)
                             <div style="background: rgba(15, 23, 42, 0.4); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 0.75rem; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; height: 120px; position: relative;">
                                 <div style="width: 100%; height: 50px; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.1); border-radius: 4px; overflow: hidden; margin-bottom: 0.5rem;">
@@ -453,7 +620,7 @@
 
             <!-- Add Brand Form -->
             <div style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border-color); border-radius: var(--radius-lg); padding: 1.5rem;">
-                <h4 style="color: var(--primary); margin-bottom: 1.25rem; font-size: 1.05rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Yeni Referans Ekle</h4>
+                <h4 style="color: var(--primary); margin-bottom: 1.25rem; font-size: 1.05rem;">Yeni Referans Ekle</h4>
                 
                 <form action="{{ route('admin.settings.add_brand') }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -479,40 +646,16 @@
 
         </div>
     </div>
+
 </div>
 
 <script>
-    function openSettingsTab(tabId) {
-        // Toggle Nav Buttons Active Class
-        document.querySelectorAll('.settings-tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        const activeBtn = document.querySelector(`.settings-tab-btn[data-tab="${tabId}"]`);
-        if (activeBtn) activeBtn.classList.add('active');
-
-        // Toggle Tab Panes Display
-        document.querySelectorAll('.settings-tab-pane').forEach(pane => {
-            pane.classList.remove('active');
-        });
-        const activePane = document.getElementById(tabId);
-        if (activePane) activePane.classList.add('active');
-
-        // Show/Hide Submit Button for Main Form
-        const submitContainer = document.getElementById('settings-submit-container');
-        if (tabId === 'tab-brands') {
-            submitContainer.style.display = 'none';
-        } else {
-            submitContainer.style.display = 'flex';
-        }
-
-        // Store active tab in localStorage
-        localStorage.setItem('active_settings_tab', tabId);
+    function switchSettingTab(event, tabId) {
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.setting-tab-pane').forEach(pane => pane.classList.remove('active'));
+        
+        event.currentTarget.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-        // Load stored active tab or default to 'tab-general'
-        const storedTab = localStorage.getItem('active_settings_tab') || 'tab-general';
-        openSettingsTab(storedTab);
-    });
 </script>
 @endsection

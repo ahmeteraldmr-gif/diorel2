@@ -44,7 +44,7 @@ class PageController extends Controller
     public function geziRehberi()
     {
         $rehberler = Guide::all();
-        return view("destinasyonlar", compact("rehberler"));
+        return view("gezi-rehberi", compact("rehberler"));
     }
 
     public function etkinlikler()
@@ -81,13 +81,6 @@ class PageController extends Controller
         return view("journal-detay", compact("journal", "related"));
     }
 
-    public function rehberDetay($id)
-    {
-        $rehber = \App\Models\Guide::findOrFail($id);
-        $otherGuides = \App\Models\Guide::where('id', '!=', $id)->take(4)->get();
-        return view("rehber-detay", compact("rehber", "otherGuides"));
-    }
-
     public function destinasyonDetay($id)
     {
         $destination = \App\Models\Destination::findOrFail($id);
@@ -114,7 +107,13 @@ class PageController extends Controller
     public function etkinlikDetay($id)
     {
         $etkinlik = Event::findOrFail($id);
-        $otherEvents = Event::where('id', '!=', $id)->take(3)->get();
-        return view("etkinlik-detay", compact("etkinlik", "otherEvents"));
+        return view("etkinlik-detay", compact("etkinlik"));
+    }
+
+    public function rehberDetay($id)
+    {
+        $rehber = Guide::findOrFail($id);
+        $otherGuides = Guide::where('id', '!=', $id)->get();
+        return view("rehber-detay", compact("rehber", "otherGuides"));
     }
 }

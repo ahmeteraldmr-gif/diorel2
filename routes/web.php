@@ -23,16 +23,8 @@ Route::get('/yatlar.html', [PageController::class, 'yatlar']);
 Route::get('/restoranlar', [PageController::class, 'restoranlar'])->name('restoranlar');
 Route::get('/restoranlar.html', [PageController::class, 'restoranlar']);
 
-Route::get('/destinasyonlar', [PageController::class, 'geziRehberi'])->name('gezi-rehberi');
-Route::get('/destinasyonlar.html', [PageController::class, 'geziRehberi']);
-Route::get('/gezi-rehberi', function() {
-    return redirect()->route('gezi-rehberi');
-});
-Route::get('/gezi-rehberi.html', function() {
-    return redirect()->route('gezi-rehberi');
-});
-
-Route::get('/destinasyon-rehberi/{id}', [PageController::class, 'rehberDetay'])->name('rehber.detay');
+Route::get('/gezi-rehberi', [PageController::class, 'geziRehberi'])->name('gezi-rehberi');
+Route::get('/gezi-rehberi.html', [PageController::class, 'geziRehberi']);
 
 Route::get('/etkinlikler', [PageController::class, 'etkinlikler'])->name('etkinlikler');
 Route::get('/etkinlikler.html', [PageController::class, 'etkinlikler']);
@@ -46,6 +38,7 @@ Route::get('/restoran/{id}', [PageController::class, 'restoranDetay'])->name('re
 Route::get('/journal/{id}', [PageController::class, 'journalDetay'])->name('journal.detay');
 Route::get('/destinasyon/{id}', [PageController::class, 'destinasyonDetay'])->name('destinasyon.detay');
 Route::get('/etkinlik/{id}', [PageController::class, 'etkinlikDetay'])->name('etkinlik.detay');
+Route::get('/rehber/{id}', [PageController::class, 'rehberDetay'])->name('rehber.detay');
 
 // Authentication Routes
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');

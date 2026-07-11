@@ -231,21 +231,84 @@
                 gap: 3.5rem;
                 margin-bottom: 8rem;
             }
-            .hotel-image-col {
-                width: 100%;
-                aspect-ratio: 16/10;
-                flex: none;
-            }
-            .hotel-info-col {
-                width: 100%;
-                flex: none;
-            }
             .bd-container {
                 padding: 6rem 2.5rem;
             }
             .bd-hero {
                 padding-left: 5%;
             }
+        }
+
+        /* ── LIGHT MODE STYLING & TRANSITIONS ── */
+        body {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        #mainNav, .logo-text, .nav-links a, .lang-switch, .hamburger span, .bd-intro-title, .bd-intro-text, .hotel-name, .hotel-desc, .btn-bd {
+            transition: background 0.5s ease, background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        body.light-mode {
+            background-color: var(--off-white);
+            color: var(--near-black);
+        }
+        body.light-mode #mainNav {
+            background: rgba(247, 246, 242, 0.85);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+        body.light-mode .logo-text {
+            color: var(--near-black) !important;
+        }
+        body.light-mode .nav-links a {
+            color: rgba(26, 24, 22, 0.6) !important;
+        }
+        body.light-mode .nav-links a:hover, body.light-mode .nav-links a.active-page {
+            color: var(--near-black) !important;
+        }
+        body.light-mode .lang-switch {
+            color: var(--near-black) !important;
+        }
+        body.light-mode .hamburger span {
+            background: var(--near-black) !important;
+        }
+        body.light-mode .bd-intro-title {
+            color: var(--near-black);
+        }
+        body.light-mode .bd-intro-text {
+            color: var(--dark-gray);
+        }
+        body.light-mode .hotel-name {
+            color: var(--near-black);
+        }
+        body.light-mode .hotel-desc {
+            color: var(--dark-gray);
+        }
+        body.light-mode .btn-bd {
+            color: var(--near-black);
+        }
+        body.light-mode .btn-bd:hover {
+            color: var(--accent);
+        }
+        body.light-mode .hotel-image-col {
+            box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+        }
+        body.light-mode .fs-menu {
+            background: var(--off-white);
+        }
+        body.light-mode .fs-links a {
+            color: var(--near-black);
+        }
+        body.light-mode .fs-links a:hover {
+            color: var(--accent);
+        }
+        body.light-mode .fs-divider {
+            background: rgba(0, 0, 0, 0.08);
+        }
+        .theme-btn {
+            color: var(--accent, #c8a96e);
+            transition: color 0.3s, transform 0.3s;
+        }
+        body.light-mode .theme-btn {
+            color: var(--near-black);
         }
     </style>
 </head>
@@ -264,11 +327,16 @@
             <li><a href="{{ url('/oteller') }}" class="active-page" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
         </ul>
         <div class="nav-right">
+            <div class="theme-toggle-wrapper" style="margin-right: 0.5rem; display: flex; align-items: center;">
+                <button id="themeToggle" class="theme-btn" aria-label="Toggle Theme" style="background: none; border: none; cursor: pointer; font-size: 1.1rem; padding: 0.5rem; display: flex; align-items: center; transition: color 0.3s, transform 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
             <div class="lang-switch desk-lang">
                 <span id="lang-tr" class="lang-btn">TR</span>
                 <span>|</span>
@@ -288,11 +356,16 @@
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
             <li class="lang-switch" style="font-size: 1.5rem; font-family: var(--font-display); justify-content: center; margin-top:3rem;">
                 <span id="lang-tr-fs" class="lang-btn">TR</span> | <span id="lang-en-fs" class="lang-btn">EN</span>
+            </li>
+            <li style="justify-content: center; margin-top: 2rem; display: flex; align-items: center;">
+                <button id="themeToggleFs" class="theme-btn" aria-label="Toggle Theme" style="background: none; border: none; cursor: pointer; font-size: 1.6rem; padding: 0.5rem; display: flex; align-items: center;">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
             </li>
         </ul>
     </div>
@@ -371,5 +444,44 @@
     <script src="js/i18n.js?v={{ time() }}"></script>
     <script src="js/common.js?v={{ time() }}"></script>
     <script src="js/nav.js?v={{ time() }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggles = [
+                document.getElementById('themeToggle'),
+                document.getElementById('themeToggleFs')
+            ];
+            
+            // Check saved theme or default to dark mode
+            const currentTheme = localStorage.getItem('hotels-theme') || 'dark';
+            
+            function applyTheme(theme) {
+                if (theme === 'light') {
+                    document.body.classList.add('light-mode');
+                    themeToggles.forEach(btn => {
+                        if (btn) btn.querySelector('i').className = 'fa-solid fa-sun';
+                    });
+                } else {
+                    document.body.classList.remove('light-mode');
+                    themeToggles.forEach(btn => {
+                        if (btn) btn.querySelector('i').className = 'fa-solid fa-moon';
+                    });
+                }
+            }
+            
+            // Apply initial theme
+            applyTheme(currentTheme);
+            
+            // Add event listeners
+            themeToggles.forEach(btn => {
+                if (btn) {
+                    btn.addEventListener('click', function () {
+                        const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+                        applyTheme(newTheme);
+                        localStorage.setItem('hotels-theme', newTheme);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>

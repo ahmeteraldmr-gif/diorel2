@@ -34,7 +34,7 @@
             <li><a href="oteller.html" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
         </ul>
@@ -58,7 +58,7 @@
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
             <li class="lang-switch" style="font-size: 1.5rem; font-family: var(--font-display); justify-content: center; margin-top:3rem;">
@@ -71,13 +71,13 @@
     <section class="hero">
         <div class="hero-slider">
             <div class="hero-slide active"
-                style="background-image:url('foto.img/hero_4k.jpg')">
+                style="background-image:url('{{ asset($settings['hero_slide_1'] ?? 'foto.img/hero_4k.jpg') }}')">
             </div>
             <div class="hero-slide"
-                style="background-image:url('foto.img/hero_slide_2.jpg')">
+                style="background-image:url('{{ asset($settings['hero_slide_2'] ?? 'foto.img/hero_slide_2.jpg') }}')">
             </div>
             <div class="hero-slide"
-                style="background-image:url('foto.img/hero_slide_3.jpg')">
+                style="background-image:url('{{ asset($settings['hero_slide_3'] ?? 'foto.img/hero_slide_3.jpg') }}')">
             </div>
         </div>
         <div class="hero-overlay"></div>
@@ -133,44 +133,86 @@
     <!-- NEW ABOUT SECTION (BLACK TOMATO STYLE) -->
     <section class="bt-about-section" id="hakkimizda" style="padding: 7rem 5rem; text-align: center; background: var(--white);">
         <div style="max-width: 800px; margin: 0 auto 5rem;">
-            <h2 data-i18n="man_eyebrow" style="font-family: var(--font-condensed); font-size: 2.5rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; color: var(--near-black);">BU AYIN SEÇKİNLERİ</h2>
-            <p data-i18n="man_p1" style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-gray);">Sizler için özenle seçtiğimiz bu ayın en trend otel, restoran, yat ve plaj lokasyonlarının ardındaki eşsiz hikayeleri keşfedin. Sıradanlığın ötesinde anılar biriktirmeniz için tasarlanmış özel deneyimler.</p>
+            <h2 style="font-family: var(--font-condensed); font-size: 2.5rem; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 2rem; color: var(--near-black);">
+                <span class="lang-text-tr">{{ $settings['man_eyebrow_tr'] ?? 'BU AYIN SEÇKİNLERİ' }}</span>
+                <span class="lang-text-en">{{ $settings['man_eyebrow_en'] ?? "THIS MONTH'S SELECTION" }}</span>
+            </h2>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--dark-gray);">
+                <span class="lang-text-tr">{{ $settings['man_p1_tr'] ?? 'Sizler için özenle seçtiğimiz bu ayın en trend otel, restoran, yat ve plaj lokasyonlarının ardındaki eşsiz hikayeleri keşfedin. Sıradanlığın ötesinde anılar biriktirmeniz için tasarlanmış özel deneyimler.' }}</span>
+                <span class="lang-text-en">{{ $settings['man_p1_en'] ?? "Explore the unique stories behind this month's trending hotels, restaurants, yachts, and beach spots carefully selected for you. Bespoke experiences designed for you to gather memories beyond the ordinary." }}</span>
+            </p>
         </div>
         <div class="bt-about-grid" style="display: grid; gap: 2rem; text-align: left;">
             <!-- Trend Otel -->
             <div class="bt-about-card" style="aspect-ratio: 3/4; position: relative; overflow: hidden; background: var(--near-black); cursor: pointer; transition: transform 0.4s;">
-                <img src="foto.img/about_safari.jpg" alt="Trend Otel" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="{{ asset($settings['trend_otel_img'] ?? 'foto.img/about_safari.jpg') }}" alt="Trend Otel" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; pointer-events: none;">
-                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);" data-i18n="trend_otel">Trend Otel</div>
-                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;" data-i18n="trend_otel_title">Kassandra Villa</h3>
-                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;" data-i18n="kassandra_p">Ege'nin gizli kalmış koylarında uyanmanın eşsiz hissi.</p>
+                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+                        <span class="lang-text-tr">Trend Otel</span>
+                        <span class="lang-text-en">Trending Hotel</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;">
+                        <span class="lang-text-tr">{{ $settings['trend_otel_title_tr'] ?? 'Kassandra Villa' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_otel_title_en'] ?? 'Kassandra Villa' }}</span>
+                    </h3>
+                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;">
+                        <span class="lang-text-tr">{{ $settings['trend_otel_desc_tr'] ?? 'Ege\'nin gizli kalmış koylarında uyanmanın eşsiz hissi.' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_otel_desc_en'] ?? 'The unique feeling of waking up in the hidden bays of the Aegean.' }}</span>
+                    </p>
                 </div>
             </div>
             <!-- Trend Restoran -->
             <div class="bt-about-card" style="aspect-ratio: 3/4; position: relative; overflow: hidden; background: var(--near-black); cursor: pointer; transition: transform 0.4s;">
-                <img src="foto.img/rest_mikla.jpg" alt="Trend Restoran" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="{{ asset($settings['trend_rest_img'] ?? 'foto.img/rest_mikla.jpg') }}" alt="Trend Restoran" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; pointer-events: none;">
-                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);" data-i18n="trend_rest">Trend Restoran</div>
-                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;" data-i18n="trend_rest_title">Melengeç</h3>
-                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;" data-i18n="melengec_p">Taze deniz ürünleri ile unutulmaz bir gastronomi yolculuğu.</p>
+                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+                        <span class="lang-text-tr">Trend Restoran</span>
+                        <span class="lang-text-en">Trending Restaurant</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;">
+                        <span class="lang-text-tr">{{ $settings['trend_rest_title_tr'] ?? 'Melengeç' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_rest_title_en'] ?? 'Melengeç' }}</span>
+                    </h3>
+                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;">
+                        <span class="lang-text-tr">{{ $settings['trend_rest_desc_tr'] ?? 'Taze deniz ürünleri ile unutulmaz bir gastronomi yolculuğu.' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_rest_desc_en'] ?? 'An unforgettable gastronomic journey with fresh seafood.' }}</span>
+                    </p>
                 </div>
             </div>
             <!-- Trend Yat -->
             <div class="bt-about-card" style="aspect-ratio: 3/4; position: relative; overflow: hidden; background: var(--near-black); cursor: pointer; transition: transform 0.4s;">
-                <img src="foto.img/about_yacht.jpg" alt="Trend Yat" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="{{ asset($settings['trend_yat_img'] ?? 'foto.img/about_yacht.jpg') }}" alt="Trend Yat" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; pointer-events: none;">
-                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);" data-i18n="trend_yat">Trend Yat</div>
-                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;" data-i18n="trend_yat_title">Blue Voyage</h3>
-                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;" data-i18n="blue_p">Sonsuz mavilikte rotalar. Rüzgarın sesinden başka hiçbir şey yok.</p>
+                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+                        <span class="lang-text-tr">Trend Yat</span>
+                        <span class="lang-text-en">Trending Yacht</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;">
+                        <span class="lang-text-tr">{{ $settings['trend_yat_title_tr'] ?? 'Blue Voyage' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_yat_title_en'] ?? 'Blue Voyage' }}</span>
+                    </h3>
+                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;">
+                        <span class="lang-text-tr">{{ $settings['trend_yat_desc_tr'] ?? 'Sonsuz mavilikte rotalar. Rüzgarın sesinden başka hiçbir şey yok.' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_yat_desc_en'] ?? 'Routes in infinite blue. Nothing but the sound of the wind.' }}</span>
+                    </p>
                 </div>
             </div>
             <!-- Trend Beach -->
             <div class="bt-about-card" style="aspect-ratio: 3/4; position: relative; overflow: hidden; background: var(--near-black); cursor: pointer; transition: transform 0.4s;">
-                <img src="foto.img/bodrum.jpg" alt="Trend Beach" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                <img src="{{ asset($settings['trend_beach_img'] ?? 'foto.img/bodrum.jpg') }}" alt="Trend Beach" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
                 <div style="position: absolute; bottom: 0; left: 0; right: 0; padding: 2rem; background: linear-gradient(transparent, rgba(0,0,0,0.85)); color: white; pointer-events: none;">
-                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);" data-i18n="trend_beach">Trend Beach</div>
-                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;" data-i18n="trend_beach_title">Rups Beach</h3>
-                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;" data-i18n="rups_p">Altın kumlar ve kristal sular. Müziğin ritmine eşlik eden anlar.</p>
+                    <div style="font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 0.5rem; color: rgba(255,255,255,0.8);">
+                        <span class="lang-text-tr">Trend Beach</span>
+                        <span class="lang-text-en">Trending Beach</span>
+                    </div>
+                    <h3 style="font-family: var(--font-display); font-size: 1.8rem; margin-bottom: 1rem; font-weight: 400;">
+                        <span class="lang-text-tr">{{ $settings['trend_beach_title_tr'] ?? 'Rups Beach' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_beach_title_en'] ?? 'Rups Beach' }}</span>
+                    </h3>
+                    <p style="font-size: 0.85rem; line-height: 1.6; opacity: 0.9; margin: 0;">
+                        <span class="lang-text-tr">{{ $settings['trend_beach_desc_tr'] ?? 'Altın kumlar ve kristal sular. Müziğin ritmine eşlik eden anlar.' }}</span>
+                        <span class="lang-text-en">{{ $settings['trend_beach_desc_en'] ?? 'Golden sands and crystal waters. Moments accompanying the rhythm of the music.' }}</span>
+                    </p>
                 </div>
             </div>
         </div>
@@ -206,6 +248,13 @@
                                         <span class="lang-tr-text">{{ $dest->name['tr'] ?? '' }}</span>
                                         <span class="lang-en-text" style="display:none;">{{ $dest->name['en'] ?? '' }}</span>
                                     </div>
+                                    <div class="dest-btn-wrapper" style="margin-top: 0.8rem;">
+                                        <span class="btn-dest-explore">
+                                            <span class="lang-tr-text">İncele</span>
+                                            <span class="lang-en-text" style="display:none;">View</span>
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                        </span>
+                                    </div>
                                 </div>
                             </a>
                         @endforeach
@@ -224,6 +273,13 @@
                                     <div class="dest-name-grid">
                                         <span class="lang-tr-text">{{ $dest->name['tr'] ?? '' }}</span>
                                         <span class="lang-en-text" style="display:none;">{{ $dest->name['en'] ?? '' }}</span>
+                                    </div>
+                                    <div class="dest-btn-wrapper" style="margin-top: 0.8rem;">
+                                        <span class="btn-dest-explore">
+                                            <span class="lang-tr-text">İncele</span>
+                                            <span class="lang-en-text" style="display:none;">View</span>
+                                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                        </span>
                                     </div>
                                 </div>
                             </a>
@@ -279,6 +335,13 @@
                                                 <span class="lang-tr-text">{{ $dest->name['tr'] ?? '' }}</span>
                                                 <span class="lang-en-text" style="display:none;">{{ $dest->name['en'] ?? '' }}</span>
                                             </div>
+                                            <div class="dest-btn-wrapper" style="margin-top: 0.8rem;">
+                                                <span class="btn-dest-explore">
+                                                    <span class="lang-tr-text">İncele</span>
+                                                    <span class="lang-en-text" style="display:none;">View</span>
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                                </span>
+                                            </div>
                                         </div>
                                     </a>
                                 @endforeach
@@ -297,6 +360,13 @@
                                             <div class="dest-name-grid">
                                                 <span class="lang-tr-text">{{ $dest->name['tr'] ?? '' }}</span>
                                                 <span class="lang-en-text" style="display:none;">{{ $dest->name['en'] ?? '' }}</span>
+                                            </div>
+                                            <div class="dest-btn-wrapper" style="margin-top: 0.8rem;">
+                                                <span class="btn-dest-explore">
+                                                    <span class="lang-tr-text">İncele</span>
+                                                    <span class="lang-en-text" style="display:none;">View</span>
+                                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s ease;"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                                                </span>
                                             </div>
                                         </div>
                                     </a>
@@ -418,4 +488,3 @@
 </body>
 
 </html>
-

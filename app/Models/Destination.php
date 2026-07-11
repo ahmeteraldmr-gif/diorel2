@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\HasTranslations;
 
 class Destination extends Model
 {
-    use HasTranslations;
-
     protected $casts = [
         'name' => 'array',
         'region' => 'array',

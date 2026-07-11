@@ -138,58 +138,7 @@ const DEFAULT_CONTENT = {
     "detail_booking_hotel": { "tr": "Rezervasyon Yap", "en": "Book a Room" },
     "detail_booking_rest": { "tr": "Masa Ayırt", "en": "Book a Table" },
     "detail_contact_info": { "tr": "İletişim & Konum", "en": "Contact & Location" },
-    "detail_no_gallery": { "tr": "Galeri bulunmamaktadır.", "en": "No gallery photos found." },
-
-    // Missing Keys Added
-    "dest_istanbul": { "tr": "İstanbul", "en": "Istanbul" },
-    "dest_bodrum": { "tr": "Bodrum", "en": "Bodrum" },
-    "dest_fethiye": { "tr": "Fethiye", "en": "Fethiye" },
-    "dest_kapadokya": { "tr": "Kapadokya", "en": "Cappadocia" },
-    "dest_cesme": { "tr": "Çeşme", "en": "Cesme" },
-    "dest_kas": { "tr": "Kaş", "en": "Kas" },
-    "dest_datca": { "tr": "Datça", "en": "Datca" },
-    
-    "btn_explore_yachts": { "tr": "Yatları İncele", "en": "Explore Yachts" },
-    
-    "foot_honeymoon": { "tr": "Balayı Paketleri", "en": "Honeymoon Packages" },
-    "foot_family": { "tr": "Aile Tatilleri", "en": "Family Vacations" },
-    "foot_adventure": { "tr": "Macera Turları", "en": "Adventure Tours" },
-    "foot_cultural": { "tr": "Kültür Gezileri", "en": "Cultural Trips" },
-    "foot_jet": { "tr": "Özel Jet Hizmetleri", "en": "Private Jet Services" },
-    
-    "mission_p2": { "tr": "Okuyucularımız bize güvenir, markalarımız bize inanır, destinasyonlar bizi ortaklık arar çünkü söylediğimiz her şey gerçek.", "en": "Our readers trust us, our brands believe in us, and destinations seek partnerships with us because everything we say is authentic." },
-    
-    "yacht_title": { "tr": "Özel <em>Yatlar</em>", "en": "Private <em>Yachts</em>" },
-    "yacht_hol_p1": { "tr": "Kendi rotanızı belirleyin, kendi hızınızda ilerleyin. Türkiye'nin turquoise kıyılarından Yunan adalarına, İtalyan rivieralarından Hırvatistan koylarına uzanan yolculuklarda lüks ve özgürlüğü bir arada yaşayın.", "en": "Set your own course, travel at your own pace. Experience luxury and freedom together on journeys from Turkey's turquoise coasts to the Greek islands, Italian rivieras to Croatian bays." },
-    "yacht_fleet_eye": { "tr": "Filo", "en": "Fleet" },
-    "yacht_fleet_title": { "tr": "Premium <em>Yat Filomuz</em>", "en": "Our Premium <em>Yacht Fleet</em>" },
-    "yacht_route_eye": { "tr": "Güzergah Planlaması", "en": "Itinerary Planning" },
-    "yacht_route_title": { "tr": "Her yolculuk <em>size özel</em>", "en": "Every journey <em>tailored to you</em>" },
-    "yacht_route_p1": { "tr": "Bodrum'dan Marmaris'e mavi yolculuk, Ege adaları turu ya da Akdeniz'den Adriyatik'e uzanan epik rotalar — siz hayal edin, biz planlayalım. Deneyimli kaptanlarımız ve özel aşçılarımızla konfor ve lüks güvencesinde.", "en": "A blue voyage from Bodrum to Marmaris, a tour of the Aegean islands, or epic routes stretching from the Mediterranean to the Adriatic — you dream it, we plan it. Under the assurance of comfort and luxury with our experienced captains and private chefs." },
-    
-    "rest_title": { "tr": "Seçkin <em>Restoranlar</em>", "en": "Exclusive <em>Restaurants</em>" },
-    "rest_intro_p1": { "tr": "Michelin yıldızlı şeflerden yerel lezzet ustalarına, deniz kenarı balık restoranlarından dağ başı gurme deneyimlerine uzanan koleksiyonumuzla her damak tadına hitap eden masaları keşfedin.", "en": "From Michelin-starred chefs to local culinary masters, discover tables catering to every palate with our collection ranging from seaside fish restaurants to mountaintop gourmet experiences." },
-    "rest_col_eye": { "tr": "Koleksiyon", "en": "Collection" },
-    "rest_col_title": { "tr": "Öne Çıkan <em>Masalar</em>", "en": "Featured <em>Tables</em>" },
-    
-    "guide_exp_title": { "tr": "Doğru kararları <em>kolayca</em> verin", "en": "Make the right decisions <em>easily</em>" },
-    "guide_exp_p1": { "tr": "Deneyimli seyahat editörlerimizin hazırladığı destinasyon rehberleri, pratik ipuçları ve sezonluk önerilerle seyahat planlamanızı kolaylaştırıyoruz.", "en": "We make your travel planning easy with destination guides, practical tips, and seasonal recommendations prepared by our experienced travel editors." },
-    
-    "event_intro_title": { "tr": "Kaçırılmayacak <em>Anlar</em>", "en": "Unmissable <em>Moments</em>" },
-    
-    "detail_about_event": { "tr": "Etkinlik <em>Hakkında</em>", "en": "About <em>Event</em>" },
-    "detail_event_info": { "tr": "Etkinlik Detayları", "en": "Event Details" },
-    "detail_booking_event": { "tr": "Bilgi Al / Katıl", "en": "Get Info / Join" },
-    "other_events_title": { "tr": "Diğer <em>Etkinlikler</em>", "en": "Other <em>Events</em>" },
-    
-    "label_date": { "tr": "Tarih", "en": "Date" },
-    "label_location": { "tr": "Mekan / Konum", "en": "Venue / Location" },
-    "label_category": { "tr": "Kategori", "en": "Category" },
-    "label_phone": { "tr": "Telefon / WhatsApp", "en": "Phone / WhatsApp" },
-    "label_location_region": { "tr": "Konum / Bölge", "en": "Location / Region" },
-    "label_email": { "tr": "E-posta", "en": "Email" },
-    "label_phone_short": { "tr": "Telefon", "en": "Phone" },
-    "detail_video": { "tr": "Tanıtım <em>Videosu</em>", "en": "Promotional <em>Video</em>" }
+    "detail_no_gallery": { "tr": "Galeri bulunmamaktadır.", "en": "No gallery photos found." }
 };
 
 const updateLang = (lang) => {
@@ -200,46 +149,6 @@ const updateLang = (lang) => {
             el.innerHTML = DEFAULT_CONTENT[key][lang];
         }
     });
-
-    // Update document title dynamically
-    const currentTitle = document.title;
-    if (currentTitle.includes(' — ')) {
-        const parts = currentTitle.split(' — ');
-        let pageName = parts[0].trim();
-        let platformName = parts[1].trim();
-        
-        platformName = lang === 'tr' ? 'Dioreal Dijital' : 'Dioreal Digital';
-        
-        if (pageName === 'Hakkımızda' || pageName === 'About') {
-            pageName = lang === 'tr' ? 'Hakkımızda' : 'About';
-        } else if (pageName === 'Oteller' || pageName === 'Hotels') {
-            pageName = lang === 'tr' ? 'Oteller' : 'Hotels';
-        } else if (pageName === 'Yatlar' || pageName === 'Yachts') {
-            pageName = lang === 'tr' ? 'Yatlar' : 'Yachts';
-        } else if (pageName === 'Restoranlar' || pageName === 'Restaurants') {
-            pageName = lang === 'tr' ? 'Restoranlar' : 'Restaurants';
-        } else if (pageName === 'Destinasyonlar' || pageName === 'Destinations') {
-            pageName = lang === 'tr' ? 'Destinasyonlar' : 'Destinations';
-        } else if (pageName === 'Etkinlikler' || pageName === 'Events') {
-            pageName = lang === 'tr' ? 'Etkinlikler' : 'Events';
-        } else if (pageName === 'Journal') {
-            pageName = 'Journal';
-        } else {
-            const enTitleEl = document.querySelector('.page-title.lang-text-en, .jd-title .lang-text-en');
-            const trTitleEl = document.querySelector('.page-title.lang-text-tr, .jd-title .lang-text-tr');
-            if (lang === 'en' && enTitleEl) {
-                pageName = enTitleEl.textContent.trim();
-            } else if (lang === 'tr' && trTitleEl) {
-                pageName = trTitleEl.textContent.trim();
-            }
-        }
-        document.title = `${pageName} — ${platformName}`;
-    } else if (currentTitle.startsWith('Dioreal Dijital') || currentTitle.startsWith('Dioreal Digital')) {
-        document.title = lang === 'tr' 
-            ? 'Dioreal Dijital — Global Deneyim & Medya Platformu' 
-            : 'Dioreal Digital — Global Experience & Media Platform';
-    }
-
     // Active class for buttons
     document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
     const selector = lang === 'tr' ? '#lang-tr, #lang-tr-fs' : '#lang-en, #lang-en-fs';

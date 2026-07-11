@@ -1,14 +1,14 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Yeni Destinasyon Ekle')
+@section('title', 'Yeni Gezi Rehberi Ekle')
 
-@section('page_title', 'Yeni Destinasyon Ekle')
-@section('page_subtitle', 'Koleksiyona eklenecek yeni destinasyon detaylarını girin.')
+@section('page_title', 'Yeni Gezi Rehberi Ekle')
+@section('page_subtitle', 'Koleksiyona eklenecek yeni gezi rehberinin detaylarını girin.')
 
 @section('content')
     <div class="panel-card">
         <div class="panel-card-header">
-            <h3 class="panel-card-title"><i class="fas fa-plus-circle"></i> Destinasyon Formu</h3>
+            <h3 class="panel-card-title"><i class="fas fa-plus-circle"></i> Rehber Formu</h3>
             <a href="{{ route('admin.guides.index') }}" class="btn btn-outline">
                 <i class="fas fa-arrow-left"></i> Geri Dön
             </a>
@@ -49,7 +49,7 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="title_en">Guide Title (EN)</label>
-                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. One Day in Bodrum" value="{{ old('title.en') }}">
+                    <input type="text" name="title[en]" id="title_en" class="form-control" placeholder="e.g. One Day in Bodrum" value="{{ old('title.en') }}" required>
                 </div>
                 
                 <div class="form-group">
@@ -59,7 +59,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Guide content description..." style="min-height: 180px;">{{ old('desc.en') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Guide content description..." required style="min-height: 180px;">{{ old('desc.en') }}</textarea>
                 </div>
             </div>
 

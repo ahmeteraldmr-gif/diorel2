@@ -26,7 +26,7 @@
             <li><a href="oteller.html" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" class="active-page" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
         </ul>
@@ -48,7 +48,7 @@
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
             <li style="font-size:1.5rem;font-family:var(--font-display);margin-top:2rem;"><span id="lang-tr-fs" class="lang-btn active">TR</span> | <span id="lang-en-fs" class="lang-btn">EN</span></li>
@@ -129,5 +129,4 @@
     <script src="js/nav.js?v={{ time() }}"></script>
 </body>
 </html>
-
 

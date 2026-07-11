@@ -65,7 +65,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control">{{ old('desc.en', $restaurant->desc['en'] ?? '') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" required>{{ old('desc.en', $restaurant->desc['en'] ?? '') }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -196,6 +196,25 @@
                 <div>
                     <label class="form-label" for="video_url">YouTube Video Linki</label>
                     <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url', $restaurant->video_url) }}">
+                </div>
+            </div>
+
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <label class="form-label" for="theme_color">Detay Sayfası Tema Rengi</label>
+                    <select name="theme_color" id="theme_color" class="form-control">
+                        <option value="white" {{ old('theme_color', $restaurant->theme_color) == 'white' ? 'selected' : '' }}>Beyaz (Açık Tema)</option>
+                        <option value="black" {{ old('theme_color', $restaurant->theme_color) == 'black' ? 'selected' : '' }}>Siyah (Koyu Tema)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="form-label" for="photo_layout">Detay Sayfası Fotoğraf Yerleşimi</label>
+                    <select name="photo_layout" id="photo_layout" class="form-control">
+                        <option value="left" {{ old('photo_layout', $restaurant->photo_layout) == 'left' ? 'selected' : '' }}>Fotoğraf Solda, Yazı Sağda</option>
+                        <option value="right" {{ old('photo_layout', $restaurant->photo_layout) == 'right' ? 'selected' : '' }}>Fotoğraf Sağda, Yazı Solda</option>
+                    </select>
                 </div>
             </div>
 

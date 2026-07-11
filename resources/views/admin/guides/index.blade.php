@@ -1,16 +1,16 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Destinasyonları Yönet')
+@section('title', 'Gezi Rehberlerini Yönet')
 
-@section('page_title', 'Destinasyonlar')
-@section('page_subtitle', 'Web sitesindeki seyahat ve destinasyon rehberlerini buradan ekleyebilir, düzenleyebilir veya silebilirsiniz.')
+@section('page_title', 'Gezi Rehberi')
+@section('page_subtitle', 'Web sitesindeki seyahat ve gezi rehberlerini buradan ekleyebilir, düzenleyebilir veya silebilirsiniz.')
 
 @section('content')
     <div class="panel-card">
         <div class="panel-card-header">
-            <h3 class="panel-card-title"><i class="fas fa-list"></i> Tüm Destinasyonlar</h3>
+            <h3 class="panel-card-title"><i class="fas fa-list"></i> Tüm Gezi Rehberleri</h3>
             <a href="{{ route('admin.guides.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Yeni Destinasyon Ekle
+                <i class="fas fa-plus"></i> Yeni Rehber Ekle
             </a>
         </div>
         

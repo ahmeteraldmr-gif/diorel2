@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Traits\HasTranslations;
 
 class Hotel extends Model
 {
-    use HasTranslations;
-
     protected $casts = [
         "name" => "array",
         "tag" => "array",

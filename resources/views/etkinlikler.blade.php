@@ -27,7 +27,7 @@
             <li><a href="oteller.html" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" class="active-page" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
         </ul>
@@ -49,7 +49,7 @@
             <li><a href="yatlar.html" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="restoranlar.html" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="destinasyonlar.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="gezi-rehberi.html" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="etkinlikler.html" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="journal.html" data-i18n="nav_journal">Journal</a></li>
             <li style="font-size:1.5rem;font-family:var(--font-display);margin-top:2rem;"><span id="lang-tr-fs" class="lang-btn active">TR</span> | <span id="lang-en-fs" class="lang-btn">EN</span></li>
@@ -64,40 +64,33 @@
     </div>
 
     <section class="content-section">
-        <div style="max-width:1200px;margin:0 auto;padding: 0 2rem;">
+        <div style="max-width:900px;margin:0 auto;">
             <div style="text-align:center;margin-bottom:4rem;" class="reveal">
                 <span class="content-eyebrow" style="display:block;" data-i18n="event_intro_eye">Bu Sezon</span>
                 <h2 class="content-title" data-i18n="event_intro_title">Kaçırılmayacak <em>Anlar</em></h2>
             </div>
-            <div class="events-grid">
+            <div class="event-list">
                 @foreach($etkinlikler as $e)
-                    <div class="event-card reveal visible">
-                        <div class="event-card-image" style="background-image: url('{{ asset($e->img) }}');">
-                            <div class="event-date-badge">
-                                <span class="badge-day">{{ $e->day }}</span>
-                                <span class="badge-month lang-text-tr">{{ $e->month["tr"] ?? "" }}</span>
-                                <span class="badge-month lang-text-en">{{ $e->month["en"] ?? "" }}</span>
-                            </div>
+                    <div class="event-item reveal visible">
+                        <div class="event-date">
+                            <span class="event-day">{{ $e->day }}</span>
+                            <span class="event-month lang-text-tr">{{ $e->month["tr"] ?? "" }}</span>
+                            <span class="event-month lang-text-en">{{ $e->month["en"] ?? "" }}</span>
                         </div>
-                        <div class="event-card-body">
+                        <div>
                             <span class="event-tag lang-text-tr">{{ $e->tag["tr"] ?? "" }}</span>
                             <span class="event-tag lang-text-en">{{ $e->tag["en"] ?? "" }}</span>
                             
-                            <h3 class="event-card-title lang-text-tr">{{ $e->title["tr"] ?? "" }}</h3>
-                            <h3 class="event-card-title lang-text-en">{{ $e->title["en"] ?? "" }}</h3>
+                            <div class="event-title lang-text-tr">{{ $e->title["tr"] ?? "" }}</div>
+                            <div class="event-title lang-text-en">{{ $e->title["en"] ?? "" }}</div>
                             
-                            <div class="event-location-info">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span class="lang-text-tr">{{ $e->loc["tr"] ?? "" }}</span>
-                                <span class="lang-text-en">{{ $e->loc["en"] ?? "" }}</span>
-                            </div>
-                            
-                            <a href="{{ route('etkinlik.detay', $e->id) }}" class="btn-event-explore">
-                                <span class="lang-text-tr">Detayları İncele</span>
-                                <span class="lang-text-en">View Details</span>
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
+                            <div class="event-location lang-text-tr">{{ $e->loc["tr"] ?? "" }}</div>
+                            <div class="event-location lang-text-en">{{ $e->loc["en"] ?? "" }}</div>
                         </div>
+                        <a href="{{ route('etkinlik.detay', $e->id) }}" class="btn btn-outline">
+                            <span class="lang-text-tr">İncele</span>
+                            <span class="lang-text-en">Review</span>
+                        </a>
                     </div>
                 @endforeach
             </div>
@@ -110,5 +103,4 @@
     <script src="js/nav.js?v={{ time() }}"></script>
 </body>
 </html>
-
 
