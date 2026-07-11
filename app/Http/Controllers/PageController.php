@@ -43,6 +43,15 @@ class PageController extends Controller
 
     public function geziRehberi()
     {
+        if (request()->has('debug')) {
+            dd([
+                'database_path' => config('database.connections.sqlite.database'),
+                'database_exists' => file_exists(config('database.connections.sqlite.database')),
+                'database_size' => file_exists(config('database.connections.sqlite.database')) ? filesize(config('database.connections.sqlite.database')) : 0,
+                'guides_count' => Guide::count(),
+                'guides_all' => Guide::all()->toArray()
+            ]);
+        }
         $rehberler = Guide::all();
         return view("gezi-rehberi", compact("rehberler"));
     }
