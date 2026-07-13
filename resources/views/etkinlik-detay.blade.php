@@ -276,10 +276,10 @@
                     </div>
                     <div class="story-text" style="flex: 1.5;">
                         <div class="lang-text-tr">
-                            {!! nl2br(e($etkinlik->desc['tr'] ?? '')) !!}
+                            {!! nl2br(e(!empty($etkinlik->long_desc['tr']) ? $etkinlik->long_desc['tr'] : ($etkinlik->desc['tr'] ?? ''))) !!}
                         </div>
                         <div class="lang-text-en">
-                            {!! nl2br(e($etkinlik->desc['en'] ?? '')) !!}
+                            {!! nl2br(e(!empty($etkinlik->long_desc['en']) ? $etkinlik->long_desc['en'] : ($etkinlik->desc['en'] ?? ''))) !!}
                         </div>
                     </div>
                 </div>

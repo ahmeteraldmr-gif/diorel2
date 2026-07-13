@@ -51,13 +51,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_tr">Özet Açıklama (TR)</label>
-                    <textarea name="desc[tr]" id="desc_tr" class="form-control" required style="min-height: 100px;">{{ old('desc.tr', $event->desc['tr'] ?? '') }}</textarea>
+                    <label class="form-label" for="desc_tr">Açıklama (TR)</label>
+                    <textarea name="desc[tr]" id="desc_tr" class="form-control" required style="min-height: 120px;">{{ old('desc.tr', $event->desc['tr'] ?? '') }}</textarea>
                 </div>
-
+                
                 <div class="form-group">
                     <label class="form-label" for="long_desc_tr">Detaylı Açıklama (TR)</label>
-                    <textarea name="long_desc[tr]" id="long_desc_tr" class="form-control" style="min-height: 180px;">{{ old('long_desc.tr', $event->long_desc['tr'] ?? '') }}</textarea>
+                    <textarea name="long_desc[tr]" id="long_desc_tr" class="form-control" style="min-height: 200px;">{{ old('long_desc.tr', $event->long_desc['tr'] ?? '') }}</textarea>
                 </div>
             </div>
 
@@ -84,13 +84,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" required style="min-height: 100px;">{{ old('desc.en', $event->desc['en'] ?? '') }}</textarea>
+                    <label class="form-label" for="desc_en">Description (EN)</label>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" required style="min-height: 120px;">{{ old('desc.en', $event->desc['en'] ?? '') }}</textarea>
                 </div>
-
+                
                 <div class="form-group">
                     <label class="form-label" for="long_desc_en">Detailed Description (EN)</label>
-                    <textarea name="long_desc[en]" id="long_desc_en" class="form-control" style="min-height: 180px;">{{ old('long_desc.en', $event->long_desc['en'] ?? '') }}</textarea>
+                    <textarea name="long_desc[en]" id="long_desc_en" class="form-control" style="min-height: 200px;">{{ old('long_desc.en', $event->long_desc['en'] ?? '') }}</textarea>
                 </div>
             </div>
 
@@ -102,12 +102,6 @@
                 <div class="form-group">
                     <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
                     <input type="text" name="day" id="day" class="form-control" value="{{ old('day', $event->day) }}" required>
-                </div>
-
-                <!-- Phone -->
-                <div class="form-group">
-                    <label class="form-label" for="phone">Telefon / İletişim Numarası</label>
-                    <input type="text" name="phone" id="phone" class="form-control" value="{{ old('phone', $event->phone) }}">
                 </div>
 
                 <!-- Cover Image -->
@@ -141,52 +135,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Video Section -->
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div>
-                    <label class="form-label">Tanıtım Videosu Yükle (MP4 / MOV)</label>
-                    <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control">
-                    @if($event->video_file)
-                        <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">Mevcut: {{ $event->video_file }}</span>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem;">
-                            <input type="checkbox" name="delete_video_file" id="delete_video_file" value="1">
-                            <label class="form-label" for="delete_video_file" style="margin-bottom: 0; color: #ef4444; cursor: pointer; font-weight: 500;">
-                                <i class="fas fa-trash-alt"></i> Mevcut Videoyu Sil
-                            </label>
-                        </div>
-                    @endif
-                </div>
-                <div>
-                    <label class="form-label" for="video_url">Veya YouTube Video Linki</label>
-                    <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url', $event->video_url) }}">
-                </div>
-            </div>
-
-            <!-- Gallery Section -->
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-            <div style="margin-bottom: 2rem;">
-                <label class="form-label">Galeri Fotoğrafları Yükle (Çoklu Seçim)</label>
-                <input type="file" name="gallery_files[]" id="gallery_files" accept="image/*" class="form-control" multiple>
-                
-                @if(is_array($event->gallery) && count($event->gallery) > 0)
-                    <div style="margin-top: 1rem;">
-                        <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.5rem;">Mevcut Galeri Görselleri (Silmek istediklerinizi seçin):</span>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem;">
-                            @foreach($event->gallery as $img)
-                                <div style="position: relative; border: 1px solid var(--border-color); border-radius: 4px; padding: 0.25rem; background: rgba(255,255,255,0.02);">
-                                    <img src="{{ asset($img) }}" style="width: 100%; height: 80px; object-fit: cover; border-radius: 2px;">
-                                    <div style="position: absolute; top: 5px; right: 5px; background: rgba(0,0,0,0.6); padding: 2px 5px; border-radius: 2px; display: flex; align-items: center; gap: 4px;">
-                                        <input type="checkbox" name="remove_gallery[]" value="{{ $img }}" id="del_gal_{{ $loop->index }}" style="margin: 0; cursor: pointer;">
-                                        <label for="del_gal_{{ $loop->index }}" style="color: #ef4444; font-size: 0.75rem; cursor: pointer; margin: 0;"><i class="fas fa-trash-alt"></i></label>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    </div>
-                @endif
             </div>
 
             <!-- Submit Buttons -->

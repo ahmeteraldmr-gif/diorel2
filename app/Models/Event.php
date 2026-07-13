@@ -12,8 +12,7 @@ class Event extends Model
         "month" => "array",
         "loc" => "array",
         "desc" => "array",
-        "long_desc" => "array",
-        "gallery" => "array"
+        "long_desc" => "array"
     ];
 
     protected $guarded = [];
