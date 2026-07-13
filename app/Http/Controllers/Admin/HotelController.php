@@ -36,11 +36,11 @@ class HotelController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'long_desc.tr' => 'nullable|string',
             'long_desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',
@@ -51,11 +51,9 @@ class HotelController extends Controller
             'is_archived' => 'nullable',
             'video_file' => 'nullable|file|max:204800',
             'video_url' => 'nullable|string',
-            'theme_color' => 'nullable|string|in:white,black',
-            'photo_layout' => 'nullable|string|in:left,right',
         ]);
 
-        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'destination_id', 'order', 'video_url', 'theme_color', 'photo_layout']);
+        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'destination_id', 'order', 'video_url']);
         $data['order'] = $data['order'] ?? 0;
         $data['is_archived'] = $request->has('is_archived') ? 1 : 0;
         $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
@@ -96,11 +94,11 @@ class HotelController extends Controller
     {
         $request->validate([
             'name.tr' => 'required|string|max:255',
-            'name.en' => 'required|string|max:255',
+            'name.en' => 'nullable|string|max:255',
             'tag.tr' => 'nullable|string|max:255',
             'tag.en' => 'nullable|string|max:255',
             'desc.tr' => 'required|string',
-            'desc.en' => 'required|string',
+            'desc.en' => 'nullable|string',
             'long_desc.tr' => 'nullable|string',
             'long_desc.en' => 'nullable|string',
             'img_file' => 'nullable|image|max:51200',
@@ -111,11 +109,9 @@ class HotelController extends Controller
             'is_archived' => 'nullable',
             'video_file' => 'nullable|file|max:204800',
             'video_url' => 'nullable|string',
-            'theme_color' => 'nullable|string|in:white,black',
-            'photo_layout' => 'nullable|string|in:left,right',
         ]);
 
-        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'destination_id', 'order', 'video_url', 'theme_color', 'photo_layout']);
+        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'destination_id', 'order', 'video_url']);
         $data['order'] = $data['order'] ?? 0;
         $data['is_archived'] = $request->has('is_archived') ? 1 : 0;
         $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;

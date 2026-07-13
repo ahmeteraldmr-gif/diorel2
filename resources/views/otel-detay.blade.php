@@ -247,47 +247,28 @@
                 margin-top: 2rem;
             }
         }
-        
-        /* Dark Theme Style Overrides */
-        body.theme-dark {
-            background-color: #0d0d0d;
-            color: #d1d5db;
-        }
-        body.theme-dark .detail-story {
-            color: #d1d5db;
-        }
-        body.theme-dark .detail-section-title {
-            color: var(--white);
-            border-bottom-color: rgba(255, 255, 255, 0.1);
-        }
-        body.theme-dark .detail-sidebar-card {
-            background: #171717;
-            border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-        }
-        body.theme-dark .sidebar-title,
-        body.theme-dark .sidebar-info-value {
-            color: var(--white);
-            border-bottom-color: rgba(255, 255, 255, 0.05);
-        }
-        body.theme-dark .sidebar-info-label {
-            color: #9ca3af;
-        }
-        
         @media (max-width: 768px) {
-            .story-content-wrapper {
-                flex-direction: column !important;
+            .detail-container {
+                padding: 3rem 1rem;
             }
-            .story-photo {
-                width: 100% !important;
-                min-width: 100% !important;
-                max-width: 100% !important;
-                margin-bottom: 1.5rem;
+            .detail-sidebar-card {
+                padding: 1.5rem;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .gallery-section {
+                padding: 3rem 1rem;
+            }
+            .video-section {
+                padding: 0 1rem !important;
+                margin: 2rem auto !important;
             }
         }
     </style>
 </head>
-<body class="{{ ($otel->theme_color ?? 'white') === 'black' ? 'theme-dark' : '' }}">
+<body>
 
     <!-- Desktop Nav -->
     <nav id="mainNav">
@@ -301,7 +282,7 @@
             <li><a href="{{ url('/oteller') }}" class="active-page" data-i18n="nav_hotels">Oteller</a></li>
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
-            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
         </ul>
@@ -325,7 +306,7 @@
             <li><a href="{{ url('/yatlar') }}" data-i18n="nav_yachts">Yatlar</a></li>
             <li><a href="{{ url('/restoranlar') }}" data-i18n="nav_restaurants">Restoranlar</a></li>
             <div class="fs-divider"></div>
-            <li><a href="{{ url('/gezi-rehberi') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
+            <li><a href="{{ url('/destinasyonlar') }}" data-i18n="nav_guide">Gezi Rehberi</a></li>
             <li><a href="{{ url('/etkinlikler') }}" data-i18n="nav_events">Etkinlikler</a></li>
             <li><a href="{{ url('/journal') }}" data-i18n="nav_journal">Journal</a></li>
             <li class="lang-switch" style="font-size: 1.5rem; font-family: var(--font-display); justify-content: center; margin-top:3rem;">
@@ -352,18 +333,11 @@
             <div class="detail-story reveal">
                 <h2 class="detail-section-title" data-i18n="detail_about_hotel">Otel <em>Hakkında</em></h2>
                 
-                <div class="story-content-wrapper" style="display: flex; gap: 2.5rem; flex-direction: {{ ($otel->photo_layout ?? 'left') === 'left' ? 'row' : 'row-reverse' }}; align-items: flex-start;">
-                    <div class="story-photo" style="flex: 1; min-width: 280px; max-width: 45%;">
-                        <img src="{{ str_starts_with($otel->img, 'data:') || str_starts_with($otel->img, 'http') ? $otel->img : asset($otel->img) }}" alt="{{ $otel->name['tr'] ?? '' }}" style="width: 100%; border-radius: 12px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    </div>
-                    <div class="story-text" style="flex: 1.5;">
-                        <div class="lang-text-tr">
-                            {!! nl2br(e($otel->long_desc['tr'] ?? ($otel->desc['tr'] ?? ''))) !!}
-                        </div>
-                        <div class="lang-text-en">
-                            {!! nl2br(e($otel->long_desc['en'] ?? ($otel->desc['en'] ?? ''))) !!}
-                        </div>
-                    </div>
+                <div class="lang-text-tr">
+                    {!! nl2br($otel->long_desc['tr'] ?? ($otel->desc['tr'] ?? '')) !!}
+                </div>
+                <div class="lang-text-en">
+                    {!! nl2br($otel->long_desc['en'] ?? ($otel->desc['en'] ?? '')) !!}
                 </div>
             </div>
 
@@ -374,7 +348,7 @@
                 <div class="sidebar-info-item">
                     <i class="fas fa-map-marker-alt"></i>
                     <div>
-                        <div class="sidebar-info-label">Konum / Bölge</div>
+                        <div class="sidebar-info-label" data-i18n="label_location_region">Konum / Bölge</div>
                         <div class="sidebar-info-value lang-text-tr">{{ $otel->tag['tr'] ?? '' }}</div>
                         <div class="sidebar-info-value lang-text-en">{{ $otel->tag['en'] ?? '' }}</div>
                     </div>
@@ -383,7 +357,7 @@
                 <div class="sidebar-info-item">
                     <i class="fas fa-envelope"></i>
                     <div>
-                        <div class="sidebar-info-label">E-posta</div>
+                        <div class="sidebar-info-label" data-i18n="label_email">E-posta</div>
                         <div class="sidebar-info-value">{{ $settings['contact_email'] ?? 'info@dioreal.com' }}</div>
                     </div>
                 </div>
@@ -391,7 +365,7 @@
                 <div class="sidebar-info-item">
                     <i class="fas fa-phone"></i>
                     <div>
-                        <div class="sidebar-info-label">Telefon</div>
+                        <div class="sidebar-info-label" data-i18n="label_phone_short">Telefon</div>
                         <div class="sidebar-info-value">{{ $settings['contact_phone'] ?? '+90 532 000 0000' }}</div>
                     </div>
                 </div>
@@ -411,7 +385,7 @@
     @if(!empty($otel->video_file) || !empty($otel->video_url))
         <section class="video-section reveal" style="max-width: 1200px; margin: 4rem auto; padding: 0 2rem;">
             <div class="gallery-header" style="text-align: center; margin-bottom: 3.5rem;">
-                <h2 class="detail-section-title">Tanıtım <em>Videosu</em></h2>
+                <h2 class="detail-section-title" data-i18n="detail_video">Tanıtım <em>Videosu</em></h2>
             </div>
             <div class="video-container" style="position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.15); background: #000; aspect-ratio: 16/9; max-width: 900px; margin: 0 auto;">
                 @if(!empty($otel->video_file))
@@ -458,3 +432,4 @@
     <script src="{{ asset('js/nav.js') }}?v={{ time() }}"></script>
 </body>
 </html>
+
