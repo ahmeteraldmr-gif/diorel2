@@ -47,9 +47,15 @@ class EventController extends Controller
             'day' => 'required|string|max:255',
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
+            'long_desc.tr' => 'nullable|string',
+            'long_desc.en' => 'nullable|string',
+            'phone' => 'nullable|string|max:255',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
+            'gallery_files.*' => 'nullable|image|max:51200',
         ]);
 
-        $data = $request->only(['title', 'tag', 'month', 'loc', 'desc', 'day']);
+        $data = $request->only(['title', 'tag', 'month', 'loc', 'desc', 'day', 'long_desc', 'phone', 'video_url']);
 
         // Handle image
         if ($request->hasFile('img_file')) {
@@ -57,6 +63,20 @@ class EventController extends Controller
         } else {
             $data['img'] = $request->input('img_url') ?? 'foto.img/bodrum.jpg';
         }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
+        }
+
+        // Handle gallery images
+        $gallery = [];
+        if ($request->hasFile('gallery_files')) {
+            foreach ($request->file('gallery_files') as $file) {
+                $gallery[] = $this->handleFileUpload($file);
+            }
+        }
+        $data['gallery'] = $gallery;
 
         Event::create($data);
 
@@ -84,9 +104,15 @@ class EventController extends Controller
             'day' => 'required|string|max:255',
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
+            'long_desc.tr' => 'nullable|string',
+            'long_desc.en' => 'nullable|string',
+            'phone' => 'nullable|string|max:255',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
+            'gallery_files.*' => 'nullable|image|max:51200',
         ]);
 
-        $data = $request->only(['title', 'tag', 'month', 'loc', 'desc', 'day']);
+        $data = $request->only(['title', 'tag', 'month', 'loc', 'desc', 'day', 'long_desc', 'phone', 'video_url']);
 
         // Handle image
         if ($request->hasFile('img_file')) {
@@ -94,6 +120,35 @@ class EventController extends Controller
         } elseif ($request->filled('img_url')) {
             $data['img'] = $request->input('img_url');
         }
+
+        // Handle video deletion
+        if ($request->has('delete_video_file') && $request->input('delete_video_file') == '1') {
+            if ($event->video_file && File::exists(public_path($event->video_file))) {
+                File::delete(public_path($event->video_file));
+            }
+            $data['video_file'] = null;
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
+        }
+
+        // Handle gallery removals / additions
+        $gallery = $event->gallery ?? [];
+        if ($request->has('remove_gallery')) {
+            $removals = $request->input('remove_gallery');
+            $gallery = array_values(array_filter($gallery, function($img) use ($removals) {
+                return !in_array($img, $removals);
+            }));
+        }
+
+        if ($request->hasFile('gallery_files')) {
+            foreach ($request->file('gallery_files') as $file) {
+                $gallery[] = $this->handleFileUpload($file);
+            }
+        }
+        $data['gallery'] = $gallery;
 
         $event->update($data);
 

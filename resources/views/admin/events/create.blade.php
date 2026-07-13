@@ -50,8 +50,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_tr">Açıklama (TR)</label>
-                    <textarea name="desc[tr]" id="desc_tr" class="form-control" placeholder="Etkinlik açıklaması..." required style="min-height: 120px;">{{ old('desc.tr') }}</textarea>
+                    <label class="form-label" for="desc_tr">Özet Açıklama (TR)</label>
+                    <textarea name="desc[tr]" id="desc_tr" class="form-control" placeholder="Etkinlik açıklaması..." required style="min-height: 100px;">{{ old('desc.tr') }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="long_desc_tr">Detaylı Açıklama (TR)</label>
+                    <textarea name="long_desc[tr]" id="long_desc_tr" class="form-control" placeholder="Detaylı açıklama..." style="min-height: 180px;">{{ old('long_desc.tr') }}</textarea>
                 </div>
             </div>
 
@@ -78,8 +83,13 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-label" for="desc_en">Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Event description..." required style="min-height: 120px;">{{ old('desc.en') }}</textarea>
+                    <label class="form-label" for="desc_en">Short Description (EN)</label>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Event description..." required style="min-height: 100px;">{{ old('desc.en') }}</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="long_desc_en">Detailed Description (EN)</label>
+                    <textarea name="long_desc[en]" id="long_desc_en" class="form-control" placeholder="Detailed description..." style="min-height: 180px;">{{ old('long_desc.en') }}</textarea>
                 </div>
             </div>
 
@@ -92,6 +102,12 @@
                     <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
                     <input type="text" name="day" id="day" class="form-control" placeholder="Örn: 15 veya 15-18" value="{{ old('day') }}" required>
                     <small style="color: var(--text-muted); display:block; margin-top:0.25rem;">Etkinliğin yapılacağı günleri sayısal olarak girin.</small>
+                </div>
+
+                <!-- Phone -->
+                <div class="form-group">
+                    <label class="form-label" for="phone">Telefon / İletişim Numarası</label>
+                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Örn: +90 532 ..." value="{{ old('phone') }}">
                 </div>
 
                 <!-- Cover Image -->
@@ -113,6 +129,26 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Video Section -->
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <label class="form-label">Tanıtım Videosu Yükle (MP4 / MOV)</label>
+                    <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control">
+                </div>
+                <div>
+                    <label class="form-label" for="video_url">Veya YouTube Video Linki</label>
+                    <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url') }}">
+                </div>
+            </div>
+
+            <!-- Gallery Section -->
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+            <div style="margin-bottom: 2rem;">
+                <label class="form-label">Galeri Fotoğrafları Yükle (Çoklu Seçim)</label>
+                <input type="file" name="gallery_files[]" id="gallery_files" accept="image/*" class="form-control" multiple>
             </div>
 
             <!-- Submit Buttons -->
