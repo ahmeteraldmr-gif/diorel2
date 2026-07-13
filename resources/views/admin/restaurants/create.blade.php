@@ -54,7 +54,7 @@
             <div class="lang-pane" data-lang="en">
                 <div class="form-group">
                     <label class="form-label" for="name_en">Restaurant Name (EN)</label>
-                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Zuma Bodrum" value="{{ old('name.en') }}" required>
+                    <input type="text" name="name[en]" id="name_en" class="form-control" placeholder="e.g. Zuma Bodrum" value="{{ old('name.en') }}">
                 </div>
                 
                 <div class="form-group">
@@ -64,7 +64,7 @@
                 
                 <div class="form-group">
                     <label class="form-label" for="desc_en">Short Description (EN)</label>
-                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Short description for listing cards..." required>{{ old('desc.en') }}</textarea>
+                    <textarea name="desc[en]" id="desc_en" class="form-control" placeholder="Short description for listing cards...">{{ old('desc.en') }}</textarea>
                 </div>
 
                 <div class="form-group">
@@ -154,25 +154,6 @@
                 <div>
                     <label class="form-label" for="video_url">Veya YouTube Video Linki</label>
                     <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url') }}">
-                </div>
-            </div>
-
-            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <div>
-                    <label class="form-label" for="theme_color">Detay Sayfası Tema Rengi</label>
-                    <select name="theme_color" id="theme_color" class="form-control">
-                        <option value="white" {{ old('theme_color') == 'white' ? 'selected' : '' }}>Beyaz (Açık Tema)</option>
-                        <option value="black" {{ old('theme_color') == 'black' ? 'selected' : '' }}>Siyah (Koyu Tema)</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="form-label" for="photo_layout">Detay Sayfası Fotoğraf Yerleşimi</label>
-                    <select name="photo_layout" id="photo_layout" class="form-control">
-                        <option value="left" {{ old('photo_layout', 'left') == 'left' ? 'selected' : '' }}>Fotoğraf Solda, Yazı Sağda</option>
-                        <option value="right" {{ old('photo_layout') == 'right' ? 'selected' : '' }}>Fotoğraf Sağda, Yazı Solda</option>
-                    </select>
                 </div>
             </div>
 
