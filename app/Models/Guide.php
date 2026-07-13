@@ -10,7 +10,8 @@ class Guide extends Model
         "title" => "array",
         "tag" => "array",
         "desc" => "array",
-        "gallery" => "array"
+        "gallery" => "array",
+        "show_video_on_cover" => "boolean"
     ];
 
     protected $guarded = [];

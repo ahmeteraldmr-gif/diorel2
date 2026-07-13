@@ -45,15 +45,23 @@ class YachtController extends Controller
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'gallery_files.*' => 'nullable|image|max:51200',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
         ]);
 
-        $data = $request->only(['name', 'tag', 'desc', 'long_desc']);
+        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'video_url']);
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {
             $data['img'] = $this->handleFileUpload($request->file('img_file'));
         } else {
             $data['img'] = $request->input('img_url') ?? 'foto.img/yat_hero.jpg';
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
         }
 
         // Handle gallery images
@@ -89,15 +97,31 @@ class YachtController extends Controller
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'gallery_files.*' => 'nullable|image|max:51200',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
         ]);
 
-        $data = $request->only(['name', 'tag', 'desc', 'long_desc']);
+        $data = $request->only(['name', 'tag', 'desc', 'long_desc', 'video_url']);
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {
             $data['img'] = $this->handleFileUpload($request->file('img_file'));
         } elseif ($request->filled('img_url')) {
             $data['img'] = $request->input('img_url');
+        }
+
+        // Handle video deletion
+        if ($request->has('delete_video_file') && $request->input('delete_video_file') == '1') {
+            if ($yacht->video_file && File::exists(public_path($yacht->video_file))) {
+                File::delete(public_path($yacht->video_file));
+            }
+            $data['video_file'] = null;
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
         }
 
         // Handle gallery

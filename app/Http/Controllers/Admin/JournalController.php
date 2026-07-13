@@ -49,16 +49,24 @@ class JournalController extends Controller
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'destination_id' => 'nullable|exists:destinations,id',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
         ]);
 
-        $data = $request->only(['title', 'tag', 'desc', 'content', 'date', 'read_time', 'destination_id']);
+        $data = $request->only(['title', 'tag', 'desc', 'content', 'date', 'read_time', 'destination_id', 'video_url']);
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle image
         if ($request->hasFile('img_file')) {
             $data['img'] = $this->handleFileUpload($request->file('img_file'));
         } else {
             $data['img'] = $request->input('img_url') ?? 'foto.img/bodrum.jpg';
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
         }
 
         Journal::create($data);
@@ -89,16 +97,32 @@ class JournalController extends Controller
             'img_file' => 'nullable|image|max:51200',
             'img_url' => 'nullable|string',
             'destination_id' => 'nullable|exists:destinations,id',
+            'video_file' => 'nullable|file|max:204800',
+            'video_url' => 'nullable|string',
         ]);
 
-        $data = $request->only(['title', 'tag', 'desc', 'content', 'date', 'read_time', 'destination_id']);
+        $data = $request->only(['title', 'tag', 'desc', 'content', 'date', 'read_time', 'destination_id', 'video_url']);
         $data['is_featured'] = $request->boolean('is_featured');
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle image
         if ($request->hasFile('img_file')) {
             $data['img'] = $this->handleFileUpload($request->file('img_file'));
         } elseif ($request->filled('img_url')) {
             $data['img'] = $request->input('img_url');
+        }
+
+        // Handle video deletion
+        if ($request->has('delete_video_file') && $request->input('delete_video_file') == '1') {
+            if ($journal->video_file && File::exists(public_path($journal->video_file))) {
+                File::delete(public_path($journal->video_file));
+            }
+            $data['video_file'] = null;
+        }
+
+        // Handle video upload
+        if ($request->hasFile('video_file')) {
+            $data['video_file'] = $this->handleFileUpload($request->file('video_file'), 'uploads/videos');
         }
 
         $journal->update($data);

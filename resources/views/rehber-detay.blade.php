@@ -249,8 +249,29 @@
     </div>
 
     <!-- Hero Banner -->
-    <div class="jd-hero" style="background-image: url('{{ asset($rehber->img) }}');">
-        <div class="jd-hero-content">
+    @php
+        $showVideoCover = !empty($rehber->show_video_on_cover) && (!empty($rehber->video_file) || !empty($rehber->video_url));
+        $rehberImg = !empty($rehber->img) ? $rehber->img : 'foto.img/etkinlik_hero.jpg';
+        $rehberImgUrl = str_starts_with($rehberImg, 'data:') || str_starts_with($rehberImg, 'http') ? $rehberImg : asset($rehberImg);
+    @endphp
+    <div class="jd-hero" style="@if(!$showVideoCover) background-image: url('{{ $rehberImgUrl }}'); @endif">
+        @if($showVideoCover)
+            <div class="hero-video-container" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;">
+                @if(!empty($rehber->video_file))
+                    <video src="{{ asset($rehber->video_file) }}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                @elseif(!empty($rehber->video_url))
+                    @php
+                        $embedUrl = $rehber->video_url;
+                        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $rehber->video_url, $matches)) {
+                            $embedUrl = 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&mute=1&loop=1&playlist=' . $matches[1] . '&controls=0&showinfo=0&rel=0&iv_load_policy=3&playsinline=1';
+                        }
+                    @endphp
+                    <iframe src="{{ $embedUrl }}" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); pointer-events: none; object-fit: cover;"></iframe>
+                @endif
+                <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+            </div>
+        @endif
+        <div class="jd-hero-content" style="position: relative; z-index: 2;">
             <div class="jd-eyebrow">
                 <span class="lang-text-tr">{{ $rehber->tag['tr'] ?? 'Destinasyon Rehberi' }}</span>
                 <span class="lang-text-en">{{ $rehber->tag['en'] ?? 'Destination Guide' }}</span>

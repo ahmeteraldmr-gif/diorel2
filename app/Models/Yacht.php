@@ -14,7 +14,8 @@ class Yacht extends Model
         "tag" => "array",
         "desc" => "array",
         "long_desc" => "array",
-        "gallery" => "array"
+        "gallery" => "array",
+        "show_video_on_cover" => "boolean"
     ];
 
     protected $guarded = [];

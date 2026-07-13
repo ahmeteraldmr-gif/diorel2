@@ -98,10 +98,34 @@
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
 
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                <!-- Day Info -->
-                <div class="form-group">
-                    <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
-                    <input type="text" name="day" id="day" class="form-control" value="{{ old('day', $event->day) }}" required>
+                <!-- Day Info & Video fields -->
+                <div>
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label class="form-label" for="day">Gün Bilgisi (Sayısal veya Aralık)</label>
+                        <input type="text" name="day" id="day" class="form-control" value="{{ old('day', $event->day) }}" required>
+                    </div>
+
+                    <div style="margin-top: 2rem;">
+                        <label class="form-label" for="video_file">Video Yükle / Değiştir (MP4 / MOV)</label>
+                        <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control" style="margin-bottom: 1rem;">
+                        @if($event->video_file)
+                            <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">Mevcut: {{ $event->video_file }}</span>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+                                <input type="checkbox" name="delete_video_file" id="delete_video_file" value="1">
+                                <label class="form-label" for="delete_video_file" style="margin-bottom: 0; color: #ef4444; cursor: pointer; font-weight: 500;">
+                                    <i class="fas fa-trash-alt"></i> Mevcut Videoyu Sil
+                                </label>
+                            </div>
+                        @endif
+                        
+                        <label class="form-label" for="video_url">YouTube Video Linki</label>
+                        <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url', $event->video_url) }}" style="margin-bottom: 1rem;">
+                        
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                            <input type="checkbox" name="show_video_on_cover" id="show_video_on_cover" value="1" {{ old('show_video_on_cover', $event->show_video_on_cover) ? 'checked' : '' }}>
+                            <label class="form-label" for="show_video_on_cover" style="margin-bottom:0; cursor:pointer;">Kapakta Video Göster</label>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Cover Image -->

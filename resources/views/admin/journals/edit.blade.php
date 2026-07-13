@@ -117,6 +117,28 @@
                         </label>
                         <small style="color: var(--text-muted); display:block; margin-top:0.25rem;">İşaretlenirse anasayfa veya özel alanda gösterilebilir.</small>
                     </div>
+
+                    <div class="form-group" style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1.5rem;">
+                        <label class="form-label" for="video_file">Video Yükle / Değiştir (MP4 / MOV)</label>
+                        <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control" style="margin-bottom: 1rem;">
+                        @if($journal->video_file)
+                            <span style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-top: 0.25rem;">Mevcut: {{ $journal->video_file }}</span>
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 0.5rem; margin-bottom: 1rem;">
+                                <input type="checkbox" name="delete_video_file" id="delete_video_file" value="1">
+                                <label class="form-label" for="delete_video_file" style="margin-bottom: 0; color: #ef4444; cursor: pointer; font-weight: 500;">
+                                    <i class="fas fa-trash-alt"></i> Mevcut Videoyu Sil
+                                </label>
+                            </div>
+                        @endif
+                        
+                        <label class="form-label" for="video_url">YouTube Video Linki</label>
+                        <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url', $journal->video_url) }}" style="margin-bottom: 1rem;">
+                        
+                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                            <input type="checkbox" name="show_video_on_cover" id="show_video_on_cover" value="1" {{ old('show_video_on_cover', $journal->show_video_on_cover) ? 'checked' : '' }}>
+                            <label class="form-label" for="show_video_on_cover" style="margin-bottom:0; cursor:pointer;">Kapakta Video Göster</label>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Cover Image -->

@@ -48,6 +48,7 @@ class GuideController extends Controller
         ]);
 
         $data = $request->only(['title', 'tag', 'desc', 'video_url']);
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {
@@ -97,6 +98,7 @@ class GuideController extends Controller
         ]);
 
         $data = $request->only(['title', 'tag', 'desc', 'video_url']);
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {

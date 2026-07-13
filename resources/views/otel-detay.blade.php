@@ -29,6 +29,7 @@
             justify-content: center;
             text-align: center;
             color: var(--white);
+            overflow: hidden;
         }
         .page-hero::before {
             content: '';
@@ -316,8 +317,29 @@
     </div>
 
     <!-- Page Hero -->
-    <div class="page-hero" style="background-image: url('{{ asset($otel->img) }}');">
-        <div class="page-hero-content">
+    @php
+        $showVideoCover = !empty($otel->show_video_on_cover) && (!empty($otel->video_file) || !empty($otel->video_url));
+        $otelImg = !empty($otel->img) ? $otel->img : 'foto.img/etkinlik_hero.jpg';
+        $otelImgUrl = str_starts_with($otelImg, 'data:') || str_starts_with($otelImg, 'http') ? $otelImg : asset($otelImg);
+    @endphp
+    <div class="page-hero" style="@if(!$showVideoCover) background-image: url('{{ $otelImgUrl }}'); @endif">
+        @if($showVideoCover)
+            <div class="hero-video-container" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;">
+                @if(!empty($otel->video_file))
+                    <video src="{{ asset($otel->video_file) }}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                @elseif(!empty($otel->video_url))
+                    @php
+                        $embedUrl = $otel->video_url;
+                        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $otel->video_url, $matches)) {
+                            $embedUrl = 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&mute=1&loop=1&playlist=' . $matches[1] . '&controls=0&showinfo=0&rel=0&iv_load_policy=3&playsinline=1';
+                        }
+                    @endphp
+                    <iframe src="{{ $embedUrl }}" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); pointer-events: none; object-fit: cover;"></iframe>
+                @endif
+                <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+            </div>
+        @endif
+        <div class="page-hero-content" style="position: relative; z-index: 2;">
             <span class="page-eyebrow lang-text-tr">{{ $otel->tag['tr'] ?? '' }}</span>
             <span class="page-eyebrow lang-text-en">{{ $otel->tag['en'] ?? '' }}</span>
             <h1 class="page-title lang-text-tr">{{ $otel->name['tr'] ?? '' }}</h1>

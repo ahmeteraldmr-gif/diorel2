@@ -12,7 +12,8 @@ class Event extends Model
         "month" => "array",
         "loc" => "array",
         "desc" => "array",
-        "long_desc" => "array"
+        "long_desc" => "array",
+        "show_video_on_cover" => "boolean"
     ];
 
     protected $guarded = [];

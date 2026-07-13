@@ -15,6 +15,7 @@ class Journal extends Model
         "tag" => "array",
         "content" => "array",
         "is_featured" => "boolean",
+        "show_video_on_cover" => "boolean",
     ];
 
     protected $guarded = [];

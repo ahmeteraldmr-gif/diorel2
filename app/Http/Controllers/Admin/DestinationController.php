@@ -58,6 +58,7 @@ class DestinationController extends Controller
 
         $data = $request->only(['name', 'region', 'desc', 'type', 'order', 'video_url']);
         $data['order'] = $data['order'] ?? 0;
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {
@@ -117,6 +118,7 @@ class DestinationController extends Controller
 
         $data = $request->only(['name', 'region', 'desc', 'type', 'order', 'video_url']);
         $data['order'] = $data['order'] ?? 0;
+        $data['show_video_on_cover'] = $request->has('show_video_on_cover') ? 1 : 0;
 
         // Handle cover image
         if ($request->hasFile('img_file')) {

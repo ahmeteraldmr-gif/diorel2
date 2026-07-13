@@ -178,6 +178,11 @@
                             <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url', $destination->video_url) }}">
                         </div>
                     </div>
+
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+                        <input type="checkbox" name="show_video_on_cover" id="show_video_on_cover" value="1" {{ old('show_video_on_cover', $destination->show_video_on_cover) ? 'checked' : '' }}>
+                        <label class="form-label" for="show_video_on_cover" style="margin-bottom:0; cursor:pointer;">Kapakta Video Göster (Kapak resmi yerine video oynatır)</label>
+                    </div>
                 </div>
             </div>
 

@@ -276,8 +276,29 @@
     </div>
 
     <!-- Hero Banner -->
-    <div class="jd-hero" style="background-image: url('{{ asset($journal->img) }}');">
-        <div class="jd-hero-content">
+    @php
+        $showVideoCover = !empty($journal->show_video_on_cover) && (!empty($journal->video_file) || !empty($journal->video_url));
+        $journalImg = !empty($journal->img) ? $journal->img : 'foto.img/etkinlik_hero.jpg';
+        $journalImgUrl = str_starts_with($journalImg, 'data:') || str_starts_with($journalImg, 'http') ? $journalImg : asset($journalImg);
+    @endphp
+    <div class="jd-hero" style="@if(!$showVideoCover) background-image: url('{{ $journalImgUrl }}'); @endif">
+        @if($showVideoCover)
+            <div class="hero-video-container" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; z-index: 0;">
+                @if(!empty($journal->video_file))
+                    <video src="{{ asset($journal->video_file) }}" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+                @elseif(!empty($journal->video_url))
+                    @php
+                        $embedUrl = $journal->video_url;
+                        if (preg_match('/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/', $journal->video_url, $matches)) {
+                            $embedUrl = 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&mute=1&loop=1&playlist=' . $matches[1] . '&controls=0&showinfo=0&rel=0&iv_load_policy=3&playsinline=1';
+                        }
+                    @endphp
+                    <iframe src="{{ $embedUrl }}" frameborder="0" allow="autoplay; encrypted-media" style="position: absolute; top: 50%; left: 50%; width: 100vw; height: 56.25vw; min-width: 100%; min-height: 100%; transform: translate(-50%, -50%); pointer-events: none; object-fit: cover;"></iframe>
+                @endif
+                <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1;"></div>
+            </div>
+        @endif
+        <div class="jd-hero-content" style="position: relative; z-index: 2;">
             <div class="jd-eyebrow">
                 <span class="lang-text-tr">{{ $journal->tag['tr'] ?? 'Journal' }}</span>
                 <span class="lang-text-en">{{ $journal->tag['en'] ?? 'Journal' }}</span>

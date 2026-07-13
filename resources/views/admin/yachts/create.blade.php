@@ -115,6 +115,25 @@
                 </div>
             </div>
 
+            <!-- Video Upload -->
+            <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                <div>
+                    <label class="form-label" for="video_file">Video Yükle (MP4 / MOV)</label>
+                    <input type="file" name="video_file" id="video_file" accept="video/*" class="form-control">
+                </div>
+                <div>
+                    <label class="form-label" for="video_url">YouTube Video Linki</label>
+                    <input type="text" name="video_url" id="video_url" class="form-control" placeholder="Örn: https://www.youtube.com/watch?v=..." value="{{ old('video_url') }}">
+                </div>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 2rem;">
+                <input type="checkbox" name="show_video_on_cover" id="show_video_on_cover" value="1" {{ old('show_video_on_cover') ? 'checked' : '' }}>
+                <label class="form-label" for="show_video_on_cover" style="margin-bottom:0; cursor:pointer;">Kapakta Video Göster (Kapak resmi yerine video oynatır)</label>
+            </div>
+
             <!-- Submit Buttons -->
             <div style="display: flex; gap: 1rem; justify-content: flex-end;">
                 <a href="{{ route('admin.yachts.index') }}" class="btn btn-outline">İptal Et</a>

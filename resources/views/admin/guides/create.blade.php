@@ -91,6 +91,11 @@
             <!-- Video Upload -->
             <hr style="border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0;">
 
+            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem;">
+                <input type="checkbox" name="show_video_on_cover" id="show_video_on_cover" value="1" {{ old('show_video_on_cover') ? 'checked' : '' }}>
+                <label class="form-label" for="show_video_on_cover" style="margin-bottom:0; cursor:pointer;">Kapakta Video Göster (Kapak resmi yerine video oynatır)</label>
+            </div>
+
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                 <div>
                     <label class="form-label">Video Yükle (MP4 / MOV)</label>
