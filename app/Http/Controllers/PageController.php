@@ -8,6 +8,7 @@ use App\Models\Restaurant;
 use App\Models\Yacht;
 use App\Models\Guide;
 use App\Models\Event;
+use App\Models\Destination;
 use App\Models\Journal;
 
 class PageController extends Controller
@@ -45,6 +46,12 @@ class PageController extends Controller
     {
         $rehberler = Guide::all();
         return view("gezi-rehberi", compact("rehberler"));
+    }
+
+    public function destinasyonlar()
+    {
+        $destinations = Destination::orderBy('order')->get()->groupBy('type');
+        return view("destinasyonlar", compact("destinations"));
     }
 
     public function etkinlikler()

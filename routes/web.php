@@ -26,6 +26,9 @@ Route::get('/restoranlar.html', [PageController::class, 'restoranlar']);
 Route::get('/gezi-rehberi', [PageController::class, 'geziRehberi'])->name('gezi-rehberi');
 Route::get('/gezi-rehberi.html', [PageController::class, 'geziRehberi']);
 
+Route::get('/destinasyonlar', [PageController::class, 'destinasyonlar'])->name('destinasyonlar');
+Route::get('/destinasyonlar.html', [PageController::class, 'destinasyonlar']);
+
 Route::get('/etkinlikler', [PageController::class, 'etkinlikler'])->name('etkinlikler');
 Route::get('/etkinlikler.html', [PageController::class, 'etkinlikler']);
 
