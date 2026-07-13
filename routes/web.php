@@ -25,6 +25,12 @@ Route::get('/restoranlar.html', [PageController::class, 'restoranlar']);
 
 Route::get('/gezi-rehberi', [PageController::class, 'geziRehberi'])->name('gezi-rehberi');
 Route::get('/gezi-rehberi.html', [PageController::class, 'geziRehberi']);
+Route::get('/destinasyonlar', function() {
+    return redirect()->route('gezi-rehberi');
+});
+Route::get('/destinasyonlar.html', function() {
+    return redirect()->route('gezi-rehberi');
+});
 
 Route::get('/etkinlikler', [PageController::class, 'etkinlikler'])->name('etkinlikler');
 Route::get('/etkinlikler.html', [PageController::class, 'etkinlikler']);
