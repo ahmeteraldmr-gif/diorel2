@@ -1,7 +1,10 @@
-﻿[
+[
     {
         "id": 1248642333,
-        "name": "{\"tr\":\"Bizim Ev Dat\\u00e7a\",\"en\":\"Bizim Ev Dat\\u00e7a\"}",
+        "name": {
+            "tr": "Bizim Ev Datça",
+            "en": "Bizim Ev Datça"
+        },
         "tag": {
             "tr": "Otel",
             "en": "Hotel"
@@ -30,7 +33,10 @@
     },
     {
         "id": 1248642334,
-        "name": "{\"tr\":\"Nautical Hotel\",\"en\":\"Nautical Hotel\"}",
+        "name": {
+            "tr": "Nautical Hotel",
+            "en": "Nautical Hotel"
+        },
         "tag": {
             "tr": "Otel",
             "en": "Hotel"
@@ -59,7 +65,10 @@
     },
     {
         "id": 1248642335,
-        "name": "{\"tr\":\"Perdue Otel\",\"en\":\"Perdue Hotel\"}",
+        "name": {
+            "tr": "Perdue Otel",
+            "en": "Perdue Hotel"
+        },
         "tag": {
             "tr": "Otel",
             "en": "Hotel"
@@ -88,7 +97,10 @@
     },
     {
         "id": 1248642336,
-        "name": "{\"tr\":\"Kargilos Hotel & Beach\",\"en\":\"Kargilos Hotel & Beach\"}",
+        "name": {
+            "tr": "Kargilos Hotel & Beach",
+            "en": "Kargilos Hotel & Beach"
+        },
         "tag": {
             "tr": "Otel & Beach",
             "en": "Hotel & Beach"
@@ -117,7 +129,10 @@
     },
     {
         "id": 1248642337,
-        "name": "{\"tr\":\"Mehtap Kalek\\u00f6y\",\"en\":\"Mehtap Kalek\\u00f6y\"}",
+        "name": {
+            "tr": "Mehtap Kaleköy",
+            "en": "Mehtap Kaleköy"
+        },
         "tag": {
             "tr": "Otel",
             "en": "Hotel"
@@ -146,7 +161,10 @@
     },
     {
         "id": 1248642339,
-        "name": "{\"tr\":\"Mendelle\",\"en\":\"Mendelle Hotel\"}",
+        "name": {
+            "tr": "Mendelle",
+            "en": "Mendelle Hotel"
+        },
         "tag": {
             "tr": "otel",
             "en": "Hotel"
@@ -166,35 +184,6 @@
         ],
         "created_at": "2026-07-10 12:41:50",
         "updated_at": "2026-07-10 12:41:50",
-        "destination_id": null,
-        "order": 0,
-        "is_archived": 0,
-        "video_file": null,
-        "video_url": null,
-        "show_video_on_cover": 0
-    },
-    {
-        "id": 1248642340,
-        "name": "{\"tr\":\"deneme\",\"en\":\"deneme\"}",
-        "tag": {
-            "tr": "deneme",
-            "en": "deneme"
-        },
-        "img": "foto.img/otel_oda.jpg",
-        "desc": {
-            "tr": "deneme...",
-            "en": "..."
-        },
-        "long_desc": {
-            "tr": "deneme",
-            "en": ""
-        },
-        "gallery": [
-            "foto.img/otel_maxx_royal.jpg",
-            "foto.img/otel_museum.jpg"
-        ],
-        "created_at": "2026-07-10 12:41:52",
-        "updated_at": "2026-07-10 12:41:52",
         "destination_id": null,
         "order": 0,
         "is_archived": 0,
