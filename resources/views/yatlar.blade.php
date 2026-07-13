@@ -99,6 +99,13 @@
                         
                         <p class="card-desc lang-text-tr">{{ $y->desc["tr"] ?? "" }}</p>
                         <p class="card-desc lang-text-en">{{ $y->desc["en"] ?? "" }}</p>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid rgba(0,0,0,0.05);">
+                            <a href="{{ route('yat.detay', $y->id) }}" class="btn btn-outline" style="display: block; text-align: center; text-decoration: none;">
+                                <span class="lang-text-tr">Detayları İncele</span>
+                                <span class="lang-text-en">View Details</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach

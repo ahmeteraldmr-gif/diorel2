@@ -116,4 +116,10 @@ class PageController extends Controller
         $otherGuides = Guide::where('id', '!=', $id)->get();
         return view("rehber-detay", compact("rehber", "otherGuides"));
     }
+
+    public function yatDetay($id)
+    {
+        $yat = Yacht::findOrFail($id);
+        return view("yat-detay", compact("yat"));
+    }
 }
